@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 import 'package:women_safety_app/Utils/quotes.dart';
 import 'package:women_safety_app/Widgets/carousel_slider_widget.dart';
 import 'package:women_safety_app/Widgets/custom_appbar.dart';
