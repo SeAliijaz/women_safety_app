@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:women_safety_app/Utils/quotes.dart';
 
 class CustomAppBar extends StatelessWidget {
@@ -17,10 +16,9 @@ class CustomAppBar extends StatelessWidget {
       onTap: () {
         onTap!();
       },
-      child: Card(
-        shadowColor: Colors.grey,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10),
+      child: Container(
+        decoration: BoxDecoration(
+          border: Border.all(),
         ),
         child: Padding(
           padding: const EdgeInsets.symmetric(
@@ -31,10 +29,8 @@ class CustomAppBar extends StatelessWidget {
             child: Text(
               sweetSayings[quoteIndex!],
               textAlign: TextAlign.center,
-              style: GoogleFonts.salsa(
-                textStyle: TextStyle(
-                  fontSize: 20,
-                ),
+              style: TextStyle(
+                fontSize: 20,
               ),
             ),
           ),
