@@ -6,6 +6,7 @@ import 'package:webview_flutter/webview_flutter.dart';
 import 'package:women_safety_app/Utils/quotes.dart';
 import 'package:women_safety_app/Widgets/carousel_slider_widget.dart';
 import 'package:women_safety_app/Widgets/custom_appbar.dart';
+import 'package:women_safety_app/Widgets/emergency_card_widget.dart';
 import 'package:women_safety_app/Widgets/text_form_field.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -50,8 +51,30 @@ class _HomeScreenState extends State<HomeScreen> {
                     getRandomQuote();
                   }),
 
-              ///Carousel Slider
-              CarouselSliderWidget(s: s),
+              Expanded(
+                child: ListView(
+                  children: [
+                    ///Carousel Slider
+                    CarouselSliderWidget(),
+
+                    ///Emergency Contact Cards Text
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 10, vertical: 10),
+                      child: Text(
+                        "Emergency",
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+
+                    ///EmerGency Card Widgetsy
+                    EmergencyCardWidget(),
+                  ],
+                ),
+              ),
             ],
           ),
         ),

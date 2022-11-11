@@ -6,13 +6,6 @@ import 'package:women_safety_app/Widgets/web_view_widget.dart';
 import '../Utils/quotes.dart';
 
 class CarouselSliderWidget extends StatelessWidget {
-  const CarouselSliderWidget({
-    Key? key,
-    required this.s,
-  }) : super(key: key);
-
-  final Size s;
-
   void navigateToRoute(BuildContext context, Widget route) {
     Navigator.push(
       context,
@@ -22,6 +15,8 @@ class CarouselSliderWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final Size s = MediaQuery.of(context).size;
+
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10),
       child: CarouselSlider(
