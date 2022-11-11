@@ -1,9 +1,9 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:women_safety_app/Constants/constants.dart';
-import 'package:women_safety_app/Widgets/web_view_widget.dart';
-import '../Utils/quotes.dart';
+import 'package:women_safety_app/Utils/constants.dart';
+import 'package:women_safety_app/Widgets/Custom-Widgets/web_view_widget.dart';
+import '../../Utils/quotes.dart';
 
 class CarouselSliderWidget extends StatelessWidget {
   void navigateToRoute(BuildContext context, Widget route) {

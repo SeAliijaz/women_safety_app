@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 
 class FireBrigadierEmergency extends StatelessWidget {
+  _callNumber(String number) async {
+    await FlutterPhoneDirectCaller.callNumber(number);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -11,7 +16,7 @@ class FireBrigadierEmergency extends StatelessWidget {
           borderRadius: BorderRadius.circular(20),
         ),
         child: InkWell(
-          onTap: () {},
+          onTap: () => _callNumber("016"),
           child: Container(
             height: 180,
             width: MediaQuery.of(context).size.width * 0.7,

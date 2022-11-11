@@ -4,10 +4,12 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:women_safety_app/Utils/quotes.dart';
-import 'package:women_safety_app/Widgets/carousel_slider_widget.dart';
-import 'package:women_safety_app/Widgets/custom_appbar.dart';
-import 'package:women_safety_app/Widgets/emergency_card_widget.dart';
-import 'package:women_safety_app/Widgets/text_form_field.dart';
+import 'package:women_safety_app/Widgets/Location-Bottom_Sheet/location_bottom_sheet.dart';
+import 'package:women_safety_app/Widgets/Module-Widgets/live_safe_widget.dart';
+import 'package:women_safety_app/Widgets/Custom-Widgets/carousel_slider_widget.dart';
+import 'package:women_safety_app/Widgets/Custom-Widgets/custom_appbar.dart';
+import 'package:women_safety_app/Widgets/Module-Widgets/emergency_card_widget.dart';
+import 'package:women_safety_app/Widgets/Custom-Widgets/text_form_field.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -58,9 +60,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     CarouselSliderWidget(),
 
                     ///Emergency Contact Cards Text
-                    Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 10, vertical: 10),
+                    const Padding(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                       child: Text(
                         "Emergency",
                         style: TextStyle(
@@ -70,8 +72,28 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ),
 
-                    ///EmerGency Card Widgetsy
-                    EmergencyCardWidget(),
+                    ///Emergency Card Widgetsy
+                    const EmergencyCardWidget(),
+
+                    ///Explore Live Safe Widget Text
+                    const Padding(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                      child: Text(
+                        "Explore LiveSafe",
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+
+                    ///LiveSafe Widget
+                    LiveSafeWidget(),
+
+                    ///LocationSend Widget
+                    ///Location Bottom Sheet
+                    LocationBottomSheet(),
                   ],
                 ),
               ),
