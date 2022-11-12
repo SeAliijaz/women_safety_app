@@ -1,4 +1,9 @@
+import 'dart:convert';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:women_safety_app/Models/user_model.dart';
 import 'package:women_safety_app/Screens/Credientals-Screens/Child-Module/child_login_screen.dart';
 import 'package:women_safety_app/Widgets/Custom-Widgets/text_form_field.dart';
 
@@ -21,10 +26,65 @@ class _RegisterChildUserState extends State<RegisterChildUser> {
   bool isLoading = false;
 
   ///onsubmit
-  _onFormSubmit() {
+  _onFormSubmit() async {
     formKey.currentState!.save();
-    debugPrint("${formData["email"]}");
-    debugPrint("${formData["password"]}");
+    if (formData['password'] != formData['rpassword']) {
+      showMessage('password and retype password should be equal');
+    } else {
+      customProgressIndicator(context);
+      try {
+        setState(() {
+          isLoading = true;
+        });
+        UserCredential userCredential = await FirebaseAuth.instance
+            .createUserWithEmailAndPassword(
+                email: formData['cemail'].toString(),
+                password: formData['password'].toString());
+        if (userCredential.user != null) {
+          setState(() {
+            isLoading = true;
+          });
+          final v = userCredential.user!.uid;
+          DocumentReference<Map<String, dynamic>> db =
+              FirebaseFirestore.instance.collection('users').doc(v);
+
+          final user = UserModel(
+            name: formData['name'].toString(),
+            phone: formData['phone'].toString(),
+            childEmail: formData['cemail'].toString(),
+            guardianEmail: formData['gemail'].toString(),
+            id: v,
+            type: 'child',
+          );
+          final jsonData = user.toJson();
+          await db.set(jsonData).whenComplete(() {
+            goTo(context, ChildLogInScreen());
+            setState(() {
+              isLoading = false;
+            });
+          });
+        }
+      } on FirebaseAuthException catch (e) {
+        if (e.code == 'weak-password') {
+          print('The password provided is too weak.');
+          showMessage('The password provided is too weak.');
+        } else if (e.code == 'email-already-in-use') {
+          print('The account already exists for that email.');
+          showMessage('The account already exists for that email.');
+        }
+        setState(() {
+          isLoading = false;
+        });
+      } catch (e) {
+        print(e);
+        setState(() {
+          isLoading = false;
+        });
+        showMessage(e.toString());
+      }
+    }
+    print(formData['email']);
+    print(formData['password']);
   }
 
   @override
@@ -137,13 +197,13 @@ class _RegisterChildUserState extends State<RegisterChildUser> {
                                     },
                                   ),
                                   CustomTextField(
-                                    labelText: 'Enter password',
+                                    labelText: 'enter password',
                                     isPassword: isPasswordShown,
                                     prefixIcon: Icon(Icons.vpn_key_rounded),
                                     validator: (password) {
                                       if (password!.isEmpty ||
                                           password.length < 7) {
-                                        return 'Enter correct password';
+                                        return 'enter correct password';
                                       }
                                       return null;
                                     },
@@ -161,13 +221,13 @@ class _RegisterChildUserState extends State<RegisterChildUser> {
                                             : Icon(Icons.visibility)),
                                   ),
                                   CustomTextField(
-                                    labelText: 're-Enter password',
+                                    labelText: 'retype password',
                                     isPassword: isRetypePasswordShown,
                                     prefixIcon: Icon(Icons.vpn_key_rounded),
                                     validator: (password) {
                                       if (password!.isEmpty ||
                                           password.length < 7) {
-                                        return 'Enter correct password';
+                                        return 'enter correct password';
                                       }
                                       return null;
                                     },

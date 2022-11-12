@@ -18,7 +18,10 @@ customDialogBox(BuildContext context, String text) {
   showDialog(
     context: context,
     builder: (context) => AlertDialog(
-      title: Text(text),
+      title: Text(
+        text,
+        textAlign: TextAlign.center,
+      ),
     ),
   );
 }
