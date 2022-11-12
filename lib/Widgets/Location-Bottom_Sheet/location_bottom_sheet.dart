@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class LocationBottomSheet extends StatelessWidget {
   const LocationBottomSheet({super.key});
 
-  showModelSafeHome(BuildContext context) {
+  showLocationBottomSheet(BuildContext context) {
     showModalBottomSheet(
       context: context,
       builder: (context) {
@@ -23,7 +23,7 @@ class LocationBottomSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => showModelSafeHome(context),
+      onTap: () => showLocationBottomSheet(context),
       child: Card(
         elevation: 5,
         shape: RoundedRectangleBorder(

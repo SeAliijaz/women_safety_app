@@ -1,5 +1,4 @@
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:women_safety_app/Utils/constants.dart';
 import 'package:women_safety_app/Widgets/Custom-Widgets/web_view_widget.dart';
@@ -7,13 +6,6 @@ import '../../Utils/quotes.dart';
 
 class CarouselSliderWidget extends StatelessWidget {
   const CarouselSliderWidget({super.key});
-
-  void navigateToRoute(BuildContext context, Widget route) {
-    Navigator.push(
-      context,
-      CupertinoPageRoute(builder: (context) => route),
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,13 +25,13 @@ class CarouselSliderWidget extends StatelessWidget {
               onTap: (() {
                 ///Navigation to WebView
                 if (index == 0) {
-                  navigateToRoute(context, WebViewWidget(url: webViewURL0));
+                  goTo(context, WebViewWidget(url: webViewURL0));
                 } else if (index == 1) {
-                  navigateToRoute(context, WebViewWidget(url: webViewURL1));
+                  goTo(context, WebViewWidget(url: webViewURL1));
                 } else if (index == 2) {
-                  navigateToRoute(context, WebViewWidget(url: webViewURL2));
+                  goTo(context, WebViewWidget(url: webViewURL2));
                 } else {
-                  navigateToRoute(context, WebViewWidget(url: webViewURL3));
+                  goTo(context, WebViewWidget(url: webViewURL3));
                 }
               }),
               child: Container(

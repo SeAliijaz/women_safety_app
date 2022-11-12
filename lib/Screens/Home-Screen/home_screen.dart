@@ -68,10 +68,10 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
 
                     ///Emergency Card Widgetsy
-                    const EmergencyCardWidget(),
+                    EmergencyCardWidget(),
 
                     ///Explore Live Safe Widget Text
-                    const Padding(
+                    Padding(
                       padding:
                           EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                       child: Text(

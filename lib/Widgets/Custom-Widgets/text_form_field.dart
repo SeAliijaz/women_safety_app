@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 
 class CustomTextField extends StatelessWidget {
-  final String? hintText;
+  final String? labelText;
   final TextEditingController? controller;
   final String? Function(String?)? validator;
-  final Function(String?)? onsave;
+  final Function(String?)? onSave;
   final int? maxLines;
   final bool isPassword;
   final bool enable;
   final bool? check;
-  final TextInputType? keyboardtype;
+  final TextInputType? keyboardType;
   final TextInputAction? textInputAction;
   final FocusNode? focusNode;
-  final Widget? prefix;
-  final Widget? suffix;
+  final Widget? prefixIcon;
+  final Widget? suffixIcon;
 
   const CustomTextField(
       {super.key,
@@ -21,13 +21,13 @@ class CustomTextField extends StatelessWidget {
       this.check,
       this.enable = true,
       this.focusNode,
-      this.hintText,
+      this.labelText,
       this.isPassword = false,
-      this.keyboardtype,
+      this.keyboardType,
       this.maxLines,
-      this.onsave,
-      this.prefix,
-      this.suffix,
+      this.onSave,
+      this.prefixIcon,
+      this.suffixIcon,
       this.textInputAction,
       this.validator});
 
@@ -36,17 +36,17 @@ class CustomTextField extends StatelessWidget {
     return TextFormField(
       enabled: enable == true ? true : enable,
       maxLines: maxLines == null ? 1 : maxLines,
-      onSaved: onsave,
+      onSaved: onSave,
       focusNode: focusNode,
       textInputAction: textInputAction,
-      keyboardType: keyboardtype == null ? TextInputType.name : keyboardtype,
+      keyboardType: keyboardType == null ? TextInputType.name : keyboardType,
       controller: controller,
       validator: validator,
       obscureText: isPassword == false ? false : isPassword,
       decoration: InputDecoration(
-        prefixIcon: prefix,
-        suffixIcon: suffix,
-        labelText: hintText ?? "hint text..",
+        prefixIcon: prefixIcon,
+        suffixIcon: suffixIcon,
+        labelText: labelText ?? "Label Text..",
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(30),
           borderSide: BorderSide(

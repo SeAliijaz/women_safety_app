@@ -8,6 +8,8 @@ import 'package:women_safety_app/Widgets/LiveSafe_Widget/police_station_location
 
 class LiveSafeWidget extends StatelessWidget {
   const LiveSafeWidget({Key? key}) : super(key: key);
+
+  ///Open Map function
   static Future<void> openMap(String location) async {
     String googleUrl = 'https://www.google.com/maps/search/$location';
     final Uri link = Uri.parse(googleUrl);

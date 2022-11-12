@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
+///Primary Color
 Color primaryColor = const Color(0xfffc3b77);
 
+///Custom Navigator
 void goTo(BuildContext context, Widget nextScreen) {
   Navigator.push(
       context,
@@ -11,6 +13,7 @@ void goTo(BuildContext context, Widget nextScreen) {
       ));
 }
 
+///Custom DialougeBox
 dialogueBox(BuildContext context, String text) {
   showDialog(
     context: context,
@@ -20,6 +23,7 @@ dialogueBox(BuildContext context, String text) {
   );
 }
 
+///Custom ProgressIndicator
 Widget progressIndicator(BuildContext context) {
   return Center(
       child: CircularProgressIndicator(
@@ -29,6 +33,7 @@ Widget progressIndicator(BuildContext context) {
   ));
 }
 
+///Web view Links
 String webViewURL0 =
     "https://gulfnews.com/world/asia/pakistan/womens-day-10-pakistani-women-inspiring-the-country-1.77696239";
 String webViewURL1 =
@@ -38,6 +43,7 @@ String webViewURL2 =
 String webViewURL3 =
     "https://www.healthline.com/health/womens-health/self-defense-tips-escape";
 
+///FlutterToast
 void showMessage(String msg) {
   Fluttertoast.showToast(msg: msg);
 }

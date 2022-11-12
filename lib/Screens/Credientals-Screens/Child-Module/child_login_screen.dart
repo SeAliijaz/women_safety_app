@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:women_safety_app/Screens/Credientals-Screens/Child-Module/register_child_user.dart';
+import 'package:women_safety_app/Screens/Credientals-Screens/Forget-Pass_Module/forget_password_screen.dart';
+import 'package:women_safety_app/Screens/Credientals-Screens/Parent-Module/register_parent_user.dart';
+import 'package:women_safety_app/Utils/constants.dart';
 import 'package:women_safety_app/Widgets/Custom-Buttons/primary_button.dart';
 import 'package:women_safety_app/Widgets/Custom-Buttons/secondary_button.dart';
 import 'package:women_safety_app/Widgets/Custom-Widgets/text_form_field.dart';
 
-class LogInScreen extends StatefulWidget {
-  const LogInScreen({Key? key}) : super(key: key);
+class ChildLogInScreen extends StatefulWidget {
+  const ChildLogInScreen({Key? key}) : super(key: key);
 
   @override
-  State<LogInScreen> createState() => _LogInScreenState();
+  State<ChildLogInScreen> createState() => _ChildLogInScreenState();
 }
 
-class _LogInScreenState extends State<LogInScreen> {
+class _ChildLogInScreenState extends State<ChildLogInScreen> {
   bool isPasswordShown = false;
   final formKey = GlobalKey<FormState>();
   final formData = Map<String, Object>();
@@ -47,16 +51,18 @@ class _LogInScreenState extends State<LogInScreen> {
                           color: Color(0xfffc3b77),
                         ),
                       ),
-                      Image.asset(
-                        "assets/logo.png",
-                        scale: 3,
+                      Center(
+                        child: Image.asset(
+                          "assets/logo.png",
+                          scale: 3,
+                        ),
                       ),
                       CustomTextField(
-                        hintText: "Enter email",
+                        labelText: "Enter email",
                         textInputAction: TextInputAction.next,
-                        keyboardtype: TextInputType.emailAddress,
-                        prefix: Icon(Icons.email),
-                        onsave: (email) {
+                        keyboardType: TextInputType.emailAddress,
+                        prefixIcon: Icon(Icons.email),
+                        onSave: (email) {
                           formData["email"] = email ?? "";
                         },
                         validator: (email) {
@@ -70,26 +76,26 @@ class _LogInScreenState extends State<LogInScreen> {
                         },
                       ),
                       CustomTextField(
-                        hintText: "Enter Password",
+                        labelText: "Enter Password",
                         isPassword: isPasswordShown,
-                        onsave: (password) {
+                        onSave: (password) {
                           formData["password"] = password ?? "";
                         },
                         validator: (password) {
                           if (password!.isEmpty || password.length < 7) {
-                            return "Incorrect Pa ssword";
+                            return "Incorrect Password";
                           } else {
                             return null;
                           }
                         },
-                        prefix: Icon(Icons.vpn_key),
-                        suffix: IconButton(
+                        prefixIcon: Icon(Icons.vpn_key),
+                        suffixIcon: IconButton(
                           onPressed: () {
                             setState(() {
                               isPasswordShown = !isPasswordShown;
                             });
                           },
-                          icon: isPasswordShown
+                          icon: isPasswordShown == true
                               ? Icon(Icons.visibility_off)
                               : Icon(Icons.visibility),
                         ),
@@ -111,13 +117,35 @@ class _LogInScreenState extends State<LogInScreen> {
                           ),
                           SecondaryButton(
                             title: "Click here",
-                            onPressed: () {},
+                            onPressed: () {
+                              goTo(context, ForgetPassowrdScreen());
+                            },
                           ),
                         ],
                       ),
-                      SecondaryButton(
-                        title: "Register as a new user",
-                        onPressed: () {},
+                      Row(
+                        children: [
+                          Expanded(
+                            child: SecondaryButton(
+                              title: "Register as child",
+                              onPressed: () {
+                                goTo(context, RegisterChildUser());
+                              },
+                            ),
+                          ),
+                          Text(
+                            "|",
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                          Expanded(
+                            child: SecondaryButton(
+                              title: "Register as Parent",
+                              onPressed: () {
+                                goTo(context, RegisterParentUser());
+                              },
+                            ),
+                          ),
+                        ],
                       ),
                     ],
                   ),
