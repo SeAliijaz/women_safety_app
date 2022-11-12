@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class CustomTextField extends StatelessWidget {
   final String? hintText;
   final TextEditingController? controller;
-  final String? Function(String?)? validate;
+  final String? Function(String?)? validator;
   final Function(String?)? onsave;
   final int? maxLines;
   final bool isPassword;
@@ -29,7 +29,7 @@ class CustomTextField extends StatelessWidget {
       this.prefix,
       this.suffix,
       this.textInputAction,
-      this.validate});
+      this.validator});
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +41,7 @@ class CustomTextField extends StatelessWidget {
       textInputAction: textInputAction,
       keyboardType: keyboardtype == null ? TextInputType.name : keyboardtype,
       controller: controller,
-      validator: validate,
+      validator: validator,
       obscureText: isPassword == false ? false : isPassword,
       decoration: InputDecoration(
         prefixIcon: prefix,

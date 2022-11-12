@@ -12,8 +12,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      ///title of app
       title: 'Women Safety App',
+
+      ///debugShowCheckedModeBanner
       debugShowCheckedModeBanner: false,
+
+      ///Theme
       theme: ThemeData(
         ///Default Text Theme
         textTheme: GoogleFonts.firaSansTextTheme(
