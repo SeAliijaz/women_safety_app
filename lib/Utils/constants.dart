@@ -14,7 +14,7 @@ void goTo(BuildContext context, Widget nextScreen) {
 }
 
 ///Custom DialougeBox
-dialogueBox(BuildContext context, String text) {
+customDialogBox(BuildContext context, String text) {
   showDialog(
     context: context,
     builder: (context) => AlertDialog(
@@ -24,7 +24,7 @@ dialogueBox(BuildContext context, String text) {
 }
 
 ///Custom ProgressIndicator
-Widget progressIndicator(BuildContext context) {
+Widget customProgressIndicator(BuildContext context) {
   return Center(
       child: CircularProgressIndicator(
     backgroundColor: primaryColor,

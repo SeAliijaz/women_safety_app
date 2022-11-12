@@ -23,6 +23,7 @@ class _RegisterParentUserState extends State<RegisterParentUser> {
   ///onsubmit
   _onFormSubmit() {
     formKey.currentState!.save();
+    customProgressIndicator(context);
     debugPrint("${formData["email"]}");
     debugPrint("${formData["password"]}");
   }
@@ -37,7 +38,7 @@ class _RegisterParentUserState extends State<RegisterParentUser> {
           child: Stack(
             children: [
               isLoading
-                  ? progressIndicator(context)
+                  ? customProgressIndicator(context)
                   : SingleChildScrollView(
                       child: Column(
                         children: [

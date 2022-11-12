@@ -37,7 +37,7 @@ class _RegisterChildUserState extends State<RegisterChildUser> {
           child: Stack(
             children: [
               isLoading
-                  ? progressIndicator(context)
+                  ? customProgressIndicator(context)
                   : SingleChildScrollView(
                       child: Column(
                         children: [

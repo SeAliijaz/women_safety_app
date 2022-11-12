@@ -30,7 +30,10 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   carousel_slider: ^4.1.1
+  cloud_firestore: ^4.0.5
   cupertino_icons: ^1.0.2
+  firebase_auth: ^4.1.2
+  firebase_core: ^2.2.0
   flutter:
     sdk: flutter
   flutter_phone_direct_caller: ^2.1.1
