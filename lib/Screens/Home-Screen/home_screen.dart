@@ -5,10 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:women_safety_app/Utils/quotes.dart';
 import 'package:women_safety_app/Widgets/Location-Bottom_Sheet/location_bottom_sheet.dart';
-import 'package:women_safety_app/Widgets/Module-Widgets/live_safe_widget.dart';
+import 'package:women_safety_app/Module-Widgets/live_safe_widget.dart';
 import 'package:women_safety_app/Widgets/Custom-Widgets/carousel_slider_widget.dart';
 import 'package:women_safety_app/Widgets/Custom-Widgets/custom_appbar.dart';
-import 'package:women_safety_app/Widgets/Module-Widgets/emergency_card_widget.dart';
+import 'package:women_safety_app/Module-Widgets/emergency_card_widget.dart';
 import 'package:women_safety_app/Widgets/Custom-Widgets/text_form_field.dart';
 
 class HomeScreen extends StatefulWidget {
