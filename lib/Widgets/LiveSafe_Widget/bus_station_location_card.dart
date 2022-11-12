@@ -32,7 +32,7 @@ class BusStationCard extends StatelessWidget {
               ),
             ),
           ),
-          Text('Bus Stations')
+          const Text('Bus Stations'),
         ],
       ),
     );

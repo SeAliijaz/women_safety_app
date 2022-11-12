@@ -1,15 +1,10 @@
 import 'dart:math';
-
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:webview_flutter/webview_flutter.dart';
-import 'package:women_safety_app/Utils/quotes.dart';
-import 'package:women_safety_app/Widgets/Location-Bottom_Sheet/location_bottom_sheet.dart';
+import 'package:women_safety_app/Module-Widgets/emergency_card_widget.dart';
 import 'package:women_safety_app/Module-Widgets/live_safe_widget.dart';
 import 'package:women_safety_app/Widgets/Custom-Widgets/carousel_slider_widget.dart';
 import 'package:women_safety_app/Widgets/Custom-Widgets/custom_appbar.dart';
-import 'package:women_safety_app/Module-Widgets/emergency_card_widget.dart';
-import 'package:women_safety_app/Widgets/Custom-Widgets/text_form_field.dart';
+import 'package:women_safety_app/Widgets/Location-Bottom_Sheet/location_bottom_sheet.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -38,7 +33,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final Size s = MediaQuery.of(context).size;
+    // final Size s = MediaQuery.of(context).size;
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),

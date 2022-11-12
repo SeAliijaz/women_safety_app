@@ -32,7 +32,7 @@ class PharmacyCard extends StatelessWidget {
               ),
             ),
           ),
-          Text('Pharmacy')
+          const Text('Pharmacy')
         ],
       ),
     );

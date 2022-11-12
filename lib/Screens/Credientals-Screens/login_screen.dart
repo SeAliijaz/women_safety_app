@@ -21,7 +21,7 @@ class LogInScreen extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      Text(
+                      const Text(
                         "USER LOGIN",
                         textAlign: TextAlign.center,
                         style: TextStyle(
@@ -34,11 +34,11 @@ class LogInScreen extends StatelessWidget {
                         "assets/logo.png",
                         scale: 3,
                       ),
-                      CustomTextField(
+                      const CustomTextField(
                         hintText: "Enter Name",
                         prefix: Icon(Icons.person),
                       ),
-                      CustomTextField(
+                      const CustomTextField(
                         hintText: "Enter Password",
                         prefix: Icon(Icons.lock),
                         suffix: Icon(Icons.visibility_off),
@@ -50,7 +50,7 @@ class LogInScreen extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text(
+                          const Text(
                             "Forget Password?",
                             style: TextStyle(fontSize: 20),
                           ),

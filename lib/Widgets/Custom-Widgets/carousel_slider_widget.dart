@@ -6,6 +6,8 @@ import 'package:women_safety_app/Widgets/Custom-Widgets/web_view_widget.dart';
 import '../../Utils/quotes.dart';
 
 class CarouselSliderWidget extends StatelessWidget {
+  const CarouselSliderWidget({super.key});
+
   void navigateToRoute(BuildContext context, Widget route) {
     Navigator.push(
       context,

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 
 class FireBrigadierEmergency extends StatelessWidget {
+  const FireBrigadierEmergency({super.key});
+
   _callNumber(String number) async {
     await FlutterPhoneDirectCaller.callNumber(number);
   }
@@ -22,7 +24,7 @@ class FireBrigadierEmergency extends StatelessWidget {
             width: MediaQuery.of(context).size.width * 0.7,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
-                gradient: LinearGradient(
+                gradient: const LinearGradient(
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                   colors: [
@@ -41,7 +43,7 @@ class FireBrigadierEmergency extends StatelessWidget {
                     backgroundColor: Colors.white.withOpacity(0.5),
                     child: Image.asset('assets/flame.png'),
                   ),
-                  SizedBox(height: 5),
+                  const SizedBox(height: 5),
                   Expanded(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-Color primaryColor = Color(0xfffc3b77);
+Color primaryColor = const Color(0xfffc3b77);
 
 void goTo(BuildContext context, Widget nextScreen) {
   Navigator.push(

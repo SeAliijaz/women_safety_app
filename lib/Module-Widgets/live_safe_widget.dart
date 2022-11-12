@@ -10,9 +10,9 @@ class LiveSafeWidget extends StatelessWidget {
   const LiveSafeWidget({Key? key}) : super(key: key);
   static Future<void> openMap(String location) async {
     String googleUrl = 'https://www.google.com/maps/search/$location';
-    final Uri _url = Uri.parse(googleUrl);
+    final Uri link = Uri.parse(googleUrl);
     try {
-      await launchUrl(_url);
+      await launchUrl(link);
     } catch (e) {
       showMessage('something went wrong! call emergency number');
     }
@@ -26,9 +26,9 @@ class LiveSafeWidget extends StatelessWidget {
       height: 100,
       width: s.width,
       child: ListView(
-        physics: BouncingScrollPhysics(),
+        physics: const BouncingScrollPhysics(),
         scrollDirection: Axis.horizontal,
-        children: [
+        children: const [
           PoliceStationCard(onMapFunction: openMap),
           HospitalCard(onMapFunction: openMap),
           PharmacyCard(onMapFunction: openMap),
