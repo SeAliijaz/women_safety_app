@@ -1,7 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:women_safety_app/Screens/Credientals-Screens/Child-Module/register_child_user.dart';
 import 'package:women_safety_app/Screens/Credientals-Screens/Forget-Pass_Module/forget_password_screen.dart';
 import 'package:women_safety_app/Screens/Credientals-Screens/Parent-Module/register_parent_user.dart';
+import 'package:women_safety_app/Screens/Home-Screen/home_screen.dart';
 import 'package:women_safety_app/Utils/constants.dart';
 import 'package:women_safety_app/Widgets/Custom-Buttons/primary_button.dart';
 import 'package:women_safety_app/Widgets/Custom-Buttons/secondary_button.dart';
@@ -18,11 +21,50 @@ class _ChildLogInScreenState extends State<ChildLogInScreen> {
   bool isPasswordShown = false;
   final formKey = GlobalKey<FormState>();
   final formData = Map<String, Object>();
-
-  _onFormSubmit() {
+  bool isLoading = false;
+  _onFormSubmit() async {
     formKey.currentState!.save();
-    debugPrint("${formData["email"]}");
-    debugPrint("${formData["password"]}");
+    try {
+      setState(() {
+        isLoading = true;
+      });
+      UserCredential userCredential = await FirebaseAuth.instance
+          .signInWithEmailAndPassword(
+              email: formData['email'].toString(),
+              password: formData['password'].toString());
+      if (userCredential.user != null) {
+        setState(() {
+          isLoading = false;
+        });
+        FirebaseFirestore.instance
+            .collection('users')
+            .doc(userCredential.user!.uid)
+            .get()
+            .then((value) {
+          if (value['type'] == 'parent') {
+            print(value['type']);
+            // MySharedPrefference.saveUserType('parent');
+            // goTo(context, Pare());
+          } else {
+            // MySharedPrefference.saveUserType('child');
+            goTo(context, HomeScreen());
+          }
+        });
+      }
+    } on FirebaseAuthException catch (e) {
+      setState(() {
+        isLoading = false;
+      });
+      if (e.code == 'user-not-found') {
+        showMessage('No user found for that email.');
+        print('No user found for that email.');
+      } else if (e.code == 'wrong-password') {
+        showMessage('Wrong password provided for that user.');
+        print('Wrong password provided for that user.');
+      }
+    }
+    print(formData['email']);
+    print(formData['password']);
   }
 
   @override
@@ -42,13 +84,13 @@ class _ChildLogInScreenState extends State<ChildLogInScreen> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      const Text(
-                        "USER LOGIN",
+                      Text(
+                        "CHILD USER LOGIN",
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontSize: 40,
                           fontWeight: FontWeight.bold,
-                          color: Color(0xfffc3b77),
+                          color: primaryColor,
                         ),
                       ),
                       Center(

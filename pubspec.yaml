@@ -39,6 +39,7 @@ dependencies:
   flutter_phone_direct_caller: ^2.1.1
   fluttertoast: ^8.1.1
   google_fonts: ^3.0.1
+  shared_preferences: ^2.0.15
   url_launcher: ^6.1.6
   webview_flutter: ^3.0.4
 
