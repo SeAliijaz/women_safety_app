@@ -43,12 +43,13 @@ class _RegisterParentUserState extends State<RegisterParentUser> {
               FirebaseFirestore.instance.collection('users').doc(v);
 
           final user = UserModel(
-              name: formData['name'].toString(),
-              phone: formData['phone'].toString(),
-              childEmail: formData['cemail'].toString(),
-              guardianEmail: formData['gemail'].toString(),
-              id: v,
-              type: 'parent');
+            name: formData['name'].toString(),
+            phone: formData['phone'].toString(),
+            childEmail: formData['cemail'].toString(),
+            guardianEmail: formData['gemail'].toString(),
+            id: v,
+            type: 'parent',
+          );
           final jsonData = user.toJson();
           await db.set(jsonData).whenComplete(() {
             goTo(context, ChildLogInScreen());
@@ -58,6 +59,7 @@ class _RegisterParentUserState extends State<RegisterParentUser> {
           });
         }
       } on FirebaseAuthException catch (e) {
+        showMessage(e.toString());
         setState(() {
           isLoading = false;
         });
@@ -76,8 +78,8 @@ class _RegisterParentUserState extends State<RegisterParentUser> {
         showMessage(e.toString());
       }
     }
-    debugPrint("${formData['email']}");
-    debugPrint("${formData['password']}");
+    debugPrint(formData['email'].toString());
+    debugPrint(formData['password'].toString());
   }
 
   @override

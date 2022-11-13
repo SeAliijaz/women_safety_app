@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:women_safety_app/Screens/Credientals-Screens/Child-Module/register_child_user.dart';
 import 'package:women_safety_app/Screens/Credientals-Screens/Forget-Pass_Module/forget_password_screen.dart';
+import 'package:women_safety_app/Screens/Credientals-Screens/Parent-Module/parent_home_screen.dart';
 import 'package:women_safety_app/Screens/Credientals-Screens/Parent-Module/register_parent_user.dart';
 import 'package:women_safety_app/Screens/Home-Screen/home_screen.dart';
 import 'package:women_safety_app/Utils/constants.dart';
@@ -42,9 +43,9 @@ class _ChildLogInScreenState extends State<ChildLogInScreen> {
             .get()
             .then((value) {
           if (value['type'] == 'parent') {
-            print(value['type']);
+            debugPrint(value['type']);
             // MySharedPrefference.saveUserType('parent');
-            // goTo(context, Pare());
+            goTo(context, ParentHomeScreen());
           } else {
             // MySharedPrefference.saveUserType('child');
             goTo(context, HomeScreen());
@@ -57,14 +58,14 @@ class _ChildLogInScreenState extends State<ChildLogInScreen> {
       });
       if (e.code == 'user-not-found') {
         showMessage('No user found for that email.');
-        print('No user found for that email.');
+        debugPrint('No user found for that email.');
       } else if (e.code == 'wrong-password') {
         showMessage('Wrong password provided for that user.');
-        print('Wrong password provided for that user.');
+        debugPrint('Wrong password provided for that user.');
       }
     }
-    print(formData['email']);
-    print(formData['password']);
+    debugPrint(formData['email'].toString());
+    debugPrint(formData['password'].toString());
   }
 
   @override
