@@ -5,7 +5,8 @@ import 'package:women_safety_app/Screens/Credientals-Screens/Child-Module/regist
 import 'package:women_safety_app/Screens/Credientals-Screens/Forget-Pass_Module/forget_password_screen.dart';
 import 'package:women_safety_app/Screens/Credientals-Screens/Parent-Module/parent_home_screen.dart';
 import 'package:women_safety_app/Screens/Credientals-Screens/Parent-Module/register_parent_user.dart';
-import 'package:women_safety_app/Screens/Home-Screen/home_screen.dart';
+import 'package:women_safety_app/Screens/Bottom-Nav-Screens/child_home_screen.dart';
+import 'package:women_safety_app/Shared-Preferences/shared_preferences.dart';
 import 'package:women_safety_app/Utils/constants.dart';
 import 'package:women_safety_app/Widgets/Custom-Buttons/primary_button.dart';
 import 'package:women_safety_app/Widgets/Custom-Buttons/secondary_button.dart';
@@ -44,11 +45,11 @@ class _ChildLogInScreenState extends State<ChildLogInScreen> {
             .then((value) {
           if (value['type'] == 'parent') {
             debugPrint(value['type']);
-            // MySharedPrefference.saveUserType('parent');
+            MySharedPreferences.saveUserType('parent');
             goTo(context, ParentHomeScreen());
           } else {
-            // MySharedPrefference.saveUserType('child');
-            goTo(context, HomeScreen());
+            MySharedPreferences.saveUserType('child');
+            goTo(context, ChildLogInScreen());
           }
         });
       }
