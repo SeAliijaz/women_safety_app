@@ -1,7 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:women_safety_app/Module-Widgets/bottom_navigation_bar_screen.dart';
+import 'package:women_safety_app/Module-Widgets/bottom_nav_screen.dart';
 import 'package:women_safety_app/Screens/Credientals-Screens/Child-Module/child_login_screen.dart';
 import 'package:women_safety_app/Screens/Credientals-Screens/Parent-Module/parent_home_screen.dart';
 import 'package:women_safety_app/Screens/Bottom-Nav-Screens/child_home_screen.dart';
@@ -41,7 +41,7 @@ class MyApp extends StatelessWidget {
             return ChildLogInScreen();
           }
           if (snapshot.data == "child") {
-            return BottomNavigationBarScreen();
+            return BottomNavScreen();
           }
           if (snapshot.data == "parent") {
             return ParentHomeScreen();

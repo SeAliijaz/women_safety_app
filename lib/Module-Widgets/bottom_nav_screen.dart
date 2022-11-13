@@ -5,15 +5,14 @@ import 'package:women_safety_app/Screens/Bottom-Nav-Screens/contacts_screen.dart
 import 'package:women_safety_app/Screens/Bottom-Nav-Screens/profile_screen.dart';
 import 'package:women_safety_app/Screens/Bottom-Nav-Screens/rating_app_screen.dart';
 
-class BottomNavigationBarScreen extends StatefulWidget {
-  const BottomNavigationBarScreen({Key? key}) : super(key: key);
+class BottomNavScreen extends StatefulWidget {
+  const BottomNavScreen({Key? key}) : super(key: key);
 
   @override
-  State<BottomNavigationBarScreen> createState() =>
-      _BottomNavigationBarScreenState();
+  State<BottomNavScreen> createState() => _BottomNavScreenState();
 }
 
-class _BottomNavigationBarScreenState extends State<BottomNavigationBarScreen> {
+class _BottomNavScreenState extends State<BottomNavScreen> {
   @override
   Widget build(BuildContext context) {
     List<Widget> _screens = [
