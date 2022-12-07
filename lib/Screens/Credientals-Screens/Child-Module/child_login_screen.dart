@@ -2,10 +2,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:women_safety_app/Screens/Credientals-Screens/Child-Module/register_child_user.dart';
-import 'package:women_safety_app/Screens/Credientals-Screens/Forget-Pass_Module/forget_password_screen.dart';
 import 'package:women_safety_app/Screens/Credientals-Screens/Parent-Module/parent_home_screen.dart';
 import 'package:women_safety_app/Screens/Credientals-Screens/Parent-Module/register_parent_user.dart';
-import 'package:women_safety_app/Screens/Bottom-Nav-Screens/child_home_screen.dart';
+import 'package:women_safety_app/Screens/Home_Screen/home_screen.dart';
 import 'package:women_safety_app/Shared-Preferences/shared_preferences.dart';
 import 'package:women_safety_app/Utils/constants.dart';
 import 'package:women_safety_app/Widgets/Custom-Buttons/primary_button.dart';
@@ -49,7 +48,7 @@ class _ChildLogInScreenState extends State<ChildLogInScreen> {
             goTo(context, ParentHomeScreen());
           } else {
             MySharedPreferences.saveUserType('child');
-            goTo(context, ChildLogInScreen());
+            goTo(context, HomeScreen());
           }
         });
       }
@@ -161,9 +160,7 @@ class _ChildLogInScreenState extends State<ChildLogInScreen> {
                           ),
                           SecondaryButton(
                             title: "Click here",
-                            onPressed: () {
-                              goTo(context, ForgetPassowrdScreen());
-                            },
+                            onPressed: () {},
                           ),
                         ],
                       ),

@@ -6,14 +6,14 @@ import 'package:women_safety_app/Widgets/Custom-Widgets/carousel_slider_widget.d
 import 'package:women_safety_app/Widgets/Custom-Widgets/custom_appbar.dart';
 import 'package:women_safety_app/Widgets/Location-Bottom_Sheet/location_bottom_sheet.dart';
 
-class ChildHomeScreen extends StatefulWidget {
-  const ChildHomeScreen({Key? key}) : super(key: key);
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({Key? key}) : super(key: key);
 
   @override
-  State<ChildHomeScreen> createState() => _ChildHomeScreenState();
+  State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _ChildHomeScreenState extends State<ChildHomeScreen> {
+class _HomeScreenState extends State<HomeScreen> {
   ///Initialization
   int qIndex = 0;
 

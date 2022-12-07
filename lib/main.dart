@@ -4,7 +4,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:women_safety_app/Module-Widgets/bottom_nav_screen.dart';
 import 'package:women_safety_app/Screens/Credientals-Screens/Child-Module/child_login_screen.dart';
 import 'package:women_safety_app/Screens/Credientals-Screens/Parent-Module/parent_home_screen.dart';
-import 'package:women_safety_app/Screens/Bottom-Nav-Screens/child_home_screen.dart';
 import 'package:women_safety_app/Shared-Preferences/shared_preferences.dart';
 import 'package:women_safety_app/Utils/constants.dart';
 
@@ -30,7 +29,7 @@ class MyApp extends StatelessWidget {
       ///Theme
       theme: ThemeData(
         ///Default Text Theme
-        textTheme: GoogleFonts.firaSansTextTheme(
+        textTheme: GoogleFonts.aBeeZeeTextTheme(
           Theme.of(context).textTheme,
         ),
       ),
@@ -46,7 +45,6 @@ class MyApp extends StatelessWidget {
           if (snapshot.data == "parent") {
             return ParentHomeScreen();
           }
-
           return customProgressIndicator(context);
         },
       ),

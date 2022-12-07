@@ -48,28 +48,28 @@ class CustomTextField extends StatelessWidget {
         suffixIcon: suffixIcon,
         labelText: labelText ?? "Label Text..",
         focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(30),
+          borderRadius: BorderRadius.circular(10),
           borderSide: BorderSide(
             style: BorderStyle.solid,
             color: Theme.of(context).primaryColor,
           ),
         ),
         enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(30),
+          borderRadius: BorderRadius.circular(10),
           borderSide: BorderSide(
             style: BorderStyle.solid,
             color: Color(0xFF909A9E),
           ),
         ),
         focusedErrorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(30),
+          borderRadius: BorderRadius.circular(10),
           borderSide: BorderSide(
             style: BorderStyle.solid,
             color: Theme.of(context).primaryColor,
           ),
         ),
         errorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(30),
+          borderRadius: BorderRadius.circular(10),
           borderSide: BorderSide(
             style: BorderStyle.solid,
             color: Colors.red,

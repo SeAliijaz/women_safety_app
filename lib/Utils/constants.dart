@@ -50,3 +50,7 @@ String webViewURL3 =
 void showMessage(String msg) {
   Fluttertoast.showToast(msg: msg);
 }
+
+///my Profile pic link
+String profilePic =
+    "https://scontent.flhe13-1.fna.fbcdn.net/v/t39.30808-6/306335296_178170768060370_8576649906092955232_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=09cbfe&_nc_eui2=AeGFWgXu_YrNlSNYB5Q7pkKbmqpAXXkGCBiaqkBdeQYIGFhAMtHSYistLSqHcQFpFDJqSf-tthgbd4CIprxKnxta&_nc_ohc=DcTirbqZKuYAX8J6Thw&_nc_ht=scontent.flhe13-1.fna&oh=00_AfAGF5psdEF7Seph2XYxZCEhGwBZThVCXfEzKyYcDI6Vag&oe=63963306";
