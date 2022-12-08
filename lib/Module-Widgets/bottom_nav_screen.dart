@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:women_safety_app/Screens/Bottom-Nav-Screens/chat_screen.dart';
 import 'package:women_safety_app/Screens/Bottom-Nav-Screens/contacts_screen.dart';
 import 'package:women_safety_app/Screens/Bottom-Nav-Screens/profile_screen.dart';
-import 'package:women_safety_app/Screens/Bottom-Nav-Screens/feedback_screen.dart';
+import 'package:women_safety_app/Screens/Bottom-Nav-Screens/rating_app_screen.dart';
 import 'package:women_safety_app/Screens/Home_Screen/home_screen.dart';
 
 class BottomNavScreen extends StatefulWidget {
@@ -22,7 +22,7 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
     ContactsScreen(),
     ChatScreen(),
     ProfileScreen(),
-    FeedBackScreen(),
+    RatingAppScreen(),
   ];
 
   ///OnTapped
@@ -72,9 +72,9 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
                 Icons.person,
               )),
           BottomNavigationBarItem(
-              label: 'Feedback',
+              label: 'Review',
               icon: Icon(
-                Icons.feedback,
+                Icons.reviews,
               ))
         ],
       ),
