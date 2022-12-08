@@ -19,7 +19,9 @@ class ChatScreen extends StatelessWidget {
                 children: [
                   IconButton(
                     icon: const Icon(Icons.arrow_back),
-                    onPressed: () {},
+                    onPressed: () {
+                      showMessage("Will go back");
+                    },
                   ),
                   Container(
                     height: 40.0,
