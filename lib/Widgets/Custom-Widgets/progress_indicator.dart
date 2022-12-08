@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:women_safety_app/Utils/constants.dart';
 
 class CustomProgressIndicator extends StatelessWidget {
   final String title;
@@ -22,7 +23,12 @@ class CustomProgressIndicator extends StatelessWidget {
           ),
         ),
         SizedBox(height: 15),
-        Center(child: CircularProgressIndicator()),
+        Center(
+            child: CircularProgressIndicator(
+          backgroundColor: primaryColor,
+          color: Colors.red,
+          strokeWidth: 7,
+        )),
       ],
     ));
   }

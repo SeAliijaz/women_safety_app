@@ -28,6 +28,9 @@ class MyApp extends StatelessWidget {
 
       ///Theme
       theme: ThemeData(
+        ///setting color
+        primaryColor: primaryColor,
+
         ///Default Text Theme
         textTheme: GoogleFonts.aBeeZeeTextTheme(
           Theme.of(context).textTheme,

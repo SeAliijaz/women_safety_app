@@ -2,7 +2,7 @@ import 'package:contacts_service/contacts_service.dart';
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:women_safety_app/Utils/constants.dart';
-import '../../Widgets/Custom-Widgets/progress_indicator.dart';
+import 'package:women_safety_app/Widgets/Custom-Widgets/progress_indicator.dart';
 
 class ContactsScreen extends StatefulWidget {
   const ContactsScreen({Key? key}) : super(key: key);
@@ -40,7 +40,9 @@ class _ContactsScreenState extends State<ContactsScreen> {
       return showMessage('Access denied by user');
     } else if (permissionStatus == PermissionStatus.permanentlyDenied) {
       return showMessage("Contacts does'nt exist");
-    } else {}
+    } else {
+      ///Empty for now
+    }
   }
 
   Future<PermissionStatus> getContactsPermissions() async {
@@ -57,11 +59,13 @@ class _ContactsScreenState extends State<ContactsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: primaryColor,
+        title: contacts.length == 0 ? Text("Loading...") : Text("Contacts"),
+      ),
       body: contacts.length == 0
           ? Center(
-              child: CustomProgressIndicator(
-                title: "Loading Your Contacts...",
-              ),
+              child: CustomProgressIndicator(title: "Loading your Contacts..."),
             )
           : ListView.builder(
               itemCount: contacts.length,

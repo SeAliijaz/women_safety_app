@@ -11,7 +11,6 @@ class ProfileScreen extends StatelessWidget {
       final String? titleText,
       final String? subTitleText,
       final IconData? trailingIcon,
-      final VoidCallback? onTap,
     }) {
       return Card(
         shadowColor: Colors.grey,
@@ -28,7 +27,6 @@ class ProfileScreen extends StatelessWidget {
           title: Text(titleText ?? ""),
           subtitle: Text(subTitleText ?? ""),
           trailing: Icon(trailingIcon ?? Icons.abc),
-          onTap: onTap,
         ),
       );
     }
@@ -53,6 +51,7 @@ class ProfileScreen extends StatelessWidget {
                   ///Profile Pic
                   CircleAvatar(
                     radius: 90,
+                    backgroundColor: Colors.grey[500],
                     backgroundImage: NetworkImage(profilePic),
                     child: Align(
                       alignment: Alignment.bottomRight,
@@ -65,7 +64,9 @@ class ProfileScreen extends StatelessWidget {
                           borderRadius: BorderRadius.circular(100),
                         ),
                         child: IconButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            showMessage("feature will be added soon!");
+                          },
                           icon: Icon(
                             Icons.camera_alt,
                             size: 30,
@@ -85,27 +86,24 @@ class ProfileScreen extends StatelessWidget {
                     titleText: "Name",
                     subTitleText: "Muhammad Ali",
                     trailingIcon: Icons.edit,
-                    onTap: () {},
                   ),
                   listTile(
                     leadingIcon: Icons.mail,
                     titleText: "Email",
                     subTitleText: "Ali@gmail.com",
                     trailingIcon: Icons.edit,
-                    onTap: () {},
                   ),
                   listTile(
                     leadingIcon: Icons.phone,
                     titleText: "Phone",
                     subTitleText: "0309-4991850",
                     trailingIcon: Icons.edit,
-                    onTap: () {},
                   ),
                   listTile(
-                    leadingIcon: Icons.phonelink_off,
+                    leadingIcon: Icons.logout,
                     titleText: "Logout",
-                    trailingIcon: Icons.exit_to_app,
-                    onTap: () {},
+                    subTitleText: "As a UserType",
+                    trailingIcon: Icons.arrow_forward_ios,
                   ),
 
                   ///SizedBox
@@ -113,10 +111,10 @@ class ProfileScreen extends StatelessWidget {
 
                   MaterialButton(
                     height: s.height * 0.070,
-                    elevation: 5,
+                    elevation: 10,
                     splashColor: const Color.fromARGB(255, 158, 158, 158)
                         .withOpacity(0.5),
-                    minWidth: s.width,
+                    minWidth: s.width / 1.05,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10),
                     ),
