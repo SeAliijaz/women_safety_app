@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:women_safety_app/Utils/constants.dart';
 
@@ -52,7 +53,7 @@ class ProfileScreen extends StatelessWidget {
                   CircleAvatar(
                     radius: 90,
                     backgroundColor: Colors.grey[500],
-                    backgroundImage: NetworkImage(profilePic),
+                    backgroundImage: CachedNetworkImageProvider(profilePic),
                     child: Align(
                       alignment: Alignment.bottomRight,
                       child: Container(

@@ -135,7 +135,7 @@ class _RegisterChildUserState extends State<RegisterChildUser> {
                                     textInputAction: TextInputAction.next,
                                     keyboardType: TextInputType.name,
                                     prefixIcon: Icon(Icons.person),
-                                    onSave: (name) {
+                                    onSaved: (name) {
                                       formData['name'] = name ?? "";
                                     },
                                     validator: (name) {
@@ -152,7 +152,7 @@ class _RegisterChildUserState extends State<RegisterChildUser> {
                                     textInputAction: TextInputAction.next,
                                     keyboardType: TextInputType.phone,
                                     prefixIcon: Icon(Icons.phone),
-                                    onSave: (phone) {
+                                    onSaved: (phone) {
                                       formData['phone'] = phone ?? "";
                                     },
                                     validator: (phone) {
@@ -167,7 +167,7 @@ class _RegisterChildUserState extends State<RegisterChildUser> {
                                     textInputAction: TextInputAction.next,
                                     keyboardType: TextInputType.emailAddress,
                                     prefixIcon: Icon(Icons.email),
-                                    onSave: (email) {
+                                    onSaved: (email) {
                                       formData['cemail'] = email ?? "";
                                     },
                                     validator: (email) {
@@ -183,7 +183,7 @@ class _RegisterChildUserState extends State<RegisterChildUser> {
                                     textInputAction: TextInputAction.next,
                                     keyboardType: TextInputType.emailAddress,
                                     prefixIcon: Icon(Icons.email),
-                                    onSave: (gemail) {
+                                    onSaved: (gemail) {
                                       formData['gemail'] = gemail ?? "";
                                     },
                                     validator: (gemail) {
@@ -205,7 +205,7 @@ class _RegisterChildUserState extends State<RegisterChildUser> {
                                       }
                                       return null;
                                     },
-                                    onSave: (password) {
+                                    onSaved: (password) {
                                       formData['password'] = password ?? "";
                                     },
                                     suffixIcon: IconButton(
@@ -229,7 +229,7 @@ class _RegisterChildUserState extends State<RegisterChildUser> {
                                       }
                                       return null;
                                     },
-                                    onSave: (password) {
+                                    onSaved: (password) {
                                       formData['rpassword'] = password ?? "";
                                     },
                                     suffixIcon: IconButton(

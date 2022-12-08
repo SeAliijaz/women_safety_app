@@ -132,7 +132,7 @@ class _RegisterParentUserState extends State<RegisterParentUser> {
                                     textInputAction: TextInputAction.next,
                                     keyboardType: TextInputType.name,
                                     prefixIcon: Icon(Icons.person),
-                                    onSave: (name) {
+                                    onSaved: (name) {
                                       formData['name'] = name ?? "";
                                     },
                                     validator: (email) {
@@ -147,7 +147,7 @@ class _RegisterParentUserState extends State<RegisterParentUser> {
                                     textInputAction: TextInputAction.next,
                                     keyboardType: TextInputType.phone,
                                     prefixIcon: Icon(Icons.phone),
-                                    onSave: (phone) {
+                                    onSaved: (phone) {
                                       formData['phone'] = phone ?? "";
                                     },
                                     validator: (email) {
@@ -162,7 +162,7 @@ class _RegisterParentUserState extends State<RegisterParentUser> {
                                     textInputAction: TextInputAction.next,
                                     keyboardType: TextInputType.emailAddress,
                                     prefixIcon: Icon(Icons.person),
-                                    onSave: (email) {
+                                    onSaved: (email) {
                                       formData['gemail'] = email ?? "";
                                     },
                                     validator: (email) {
@@ -178,7 +178,7 @@ class _RegisterParentUserState extends State<RegisterParentUser> {
                                     textInputAction: TextInputAction.next,
                                     keyboardType: TextInputType.emailAddress,
                                     prefixIcon: Icon(Icons.person),
-                                    onSave: (cemail) {
+                                    onSaved: (cemail) {
                                       formData['cemail'] = cemail ?? "";
                                     },
                                     validator: (email) {
@@ -200,7 +200,7 @@ class _RegisterParentUserState extends State<RegisterParentUser> {
                                       }
                                       return null;
                                     },
-                                    onSave: (password) {
+                                    onSaved: (password) {
                                       formData['password'] = password ?? "";
                                     },
                                     suffixIcon: IconButton(
@@ -224,7 +224,7 @@ class _RegisterParentUserState extends State<RegisterParentUser> {
                                       }
                                       return null;
                                     },
-                                    onSave: (password) {
+                                    onSaved: (password) {
                                       formData['rpassword'] = password ?? "";
                                     },
                                     suffixIcon: IconButton(

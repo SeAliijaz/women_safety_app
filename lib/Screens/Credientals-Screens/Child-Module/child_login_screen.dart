@@ -105,7 +105,7 @@ class _ChildLogInScreenState extends State<ChildLogInScreen> {
                         textInputAction: TextInputAction.next,
                         keyboardType: TextInputType.emailAddress,
                         prefixIcon: Icon(Icons.email),
-                        onSave: (email) {
+                        onSaved: (email) {
                           formData["email"] = email ?? "";
                         },
                         validator: (email) {
@@ -121,7 +121,7 @@ class _ChildLogInScreenState extends State<ChildLogInScreen> {
                       CustomTextField(
                         labelText: "Enter Password",
                         isPassword: isPasswordShown,
-                        onSave: (password) {
+                        onSaved: (password) {
                           formData["password"] = password ?? "";
                         },
                         validator: (password) {
