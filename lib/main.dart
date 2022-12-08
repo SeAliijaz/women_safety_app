@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
         primaryColor: primaryColor,
 
         ///Default Text Theme
-        textTheme: GoogleFonts.aBeeZeeTextTheme(
+        textTheme: GoogleFonts.firaSansTextTheme(
           Theme.of(context).textTheme,
         ),
       ),

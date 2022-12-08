@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/services.dart';
 import 'package:women_safety_app/Utils/constants.dart';
+import 'package:women_safety_app/Widgets/Custom-Buttons/primary_button.dart';
+import 'package:women_safety_app/Widgets/Custom-Widgets/progress_indicator.dart';
 
 class RatingAppScreen extends StatefulWidget {
   const RatingAppScreen({Key? key}) : super(key: key);
@@ -35,7 +38,7 @@ class _RatingAppScreenState extends State<RatingAppScreen> {
           title: const Text("Give Us Rating"),
         ),
         body: Padding(
-          padding: const EdgeInsets.all(10.0),
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
           child: Column(
             children: [
               ///Rating Button
@@ -67,8 +70,26 @@ class _RatingAppScreenState extends State<RatingAppScreen> {
                       .snapshots(),
                   builder: (BuildContext context,
                       AsyncSnapshot<QuerySnapshot> snapshot) {
-                    if (!snapshot.hasData) {
+                    if (snapshot.connectionState == ConnectionState.waiting ||
+                        snapshot.connectionState == ConnectionState.none ||
+                        snapshot.connectionState == ConnectionState.waiting) {
                       return Center(child: customProgressIndicator(context));
+                    }
+                    if (snapshot.data!.docs.isEmpty) {
+                      return Center(
+                          child: Text(
+                        "Please Give us Rating!",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 20.5,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ));
+                    }
+                    if (!snapshot.hasData) {
+                      return Center(
+                          child: CustomProgressIndicator(
+                              title: "Loading Data..."));
                     }
                     return ListView.builder(
                       itemCount: snapshot.data!.docs.length,
@@ -78,6 +99,7 @@ class _RatingAppScreenState extends State<RatingAppScreen> {
                           elevation: 5,
                           child: ListTile(
                             textColor: Colors.black,
+                            leading: Icon(Icons.feedback),
                             title: Text(
                                 "Location: ${snapshot.data!.docs[index]["title"]}"),
                             subtitle: Text(
@@ -104,7 +126,12 @@ class _RatingAppScreenState extends State<RatingAppScreen> {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            title: const Text("Give Us Rating"),
+            title: const Text(
+              "Give Us Rating*",
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+              ),
+            ),
             content: Form(
               key: _formKey,
               child: Column(
@@ -114,34 +141,44 @@ class _RatingAppScreenState extends State<RatingAppScreen> {
                     padding: const EdgeInsets.symmetric(vertical: 5),
                     child: TextFormField(
                       controller: locationController,
-                      validator: (v) {
-                        if (v!.isEmpty) {
+                      validator: (value) {
+                        if (value!.isEmpty) {
                           return "Field Should not be empty";
+                        } else if (value.length <= 4) {
+                          return "Length should be more than 4";
                         }
                         return null;
                       },
                       decoration: const InputDecoration(
                         prefixIcon: Icon(Icons.location_city),
-                        hintText: "Enter Location",
+                        labelText: "Enter Location",
                       ),
                     ),
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 5),
                     child: TextFormField(
+                      maxLengthEnforcement: MaxLengthEnforcement.enforced,
                       controller: ratingController,
-                      validator: (v) {
-                        if (v!.isEmpty) {
-                          return "Field Should not be empty";
-                        } else if (v.length < 0 && v.length > 10) {
-                          return "Must be between 1 & 10";
+                      inputFormatters: <TextInputFormatter>[
+                        FilteringTextInputFormatter.allow(
+                            RegExp("^(1[0-0]|[1-9])\$")),
+                      ],
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return 'Please enter the Overall Rating';
+                        } else if (int.parse(value) < 1 ||
+                            int.parse(value) > 10) {
+                          return 'The rating must be between 1 and 10';
                         }
                         return null;
                       },
+                      autovalidateMode: AutovalidateMode.always,
                       keyboardType: TextInputType.number,
+                      maxLength: 2,
                       decoration: const InputDecoration(
                         prefixIcon: Icon(Icons.reviews),
-                        hintText: "Enter Rating",
+                        labelText: "Enter Rating",
                       ),
                     ),
                   ),
@@ -150,6 +187,11 @@ class _RatingAppScreenState extends State<RatingAppScreen> {
             ),
             actions: [
               MaterialButton(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                height: 50,
+                minWidth: MediaQuery.of(context).size.width,
                 color: primaryColor,
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
@@ -158,7 +200,11 @@ class _RatingAppScreenState extends State<RatingAppScreen> {
                 },
                 child: const Text(
                   "Submit",
-                  style: TextStyle(color: Colors.white),
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                  ),
                 ),
               ),
             ],
