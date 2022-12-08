@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/services.dart';
 import 'package:women_safety_app/Utils/constants.dart';
-import 'package:women_safety_app/Widgets/Custom-Buttons/primary_button.dart';
 import 'package:women_safety_app/Widgets/Custom-Widgets/progress_indicator.dart';
 
 class RatingAppScreen extends StatefulWidget {
