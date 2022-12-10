@@ -54,3 +54,12 @@ void showMessage(String msg) {
 ///my Profile pic link
 String profilePic =
     "https://scontent.flhe13-1.fna.fbcdn.net/v/t39.30808-6/306335296_178170768060370_8576649906092955232_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=09cbfe&_nc_eui2=AeGFWgXu_YrNlSNYB5Q7pkKbmqpAXXkGCBiaqkBdeQYIGFhAMtHSYistLSqHcQFpFDJqSf-tthgbd4CIprxKnxta&_nc_ohc=DcTirbqZKuYAX8J6Thw&_nc_ht=scontent.flhe13-1.fna&oh=00_AfAGF5psdEF7Seph2XYxZCEhGwBZThVCXfEzKyYcDI6Vag&oe=63963306";
+
+///Landing Screen Constants
+///Women ProtectionnImage
+String womenProtectionImg =
+    "https://img.myloview.com/stickers/women-protection-rgb-color-icon-protect-girls-against-violence-female-empowerment-women-safety-gender-equality-provide-peace-and-security-isolated-vector-illustration-simple-filled-line-drawing-700-267417018.jpg";
+
+///Bg Landing Screen
+String landingScreenBg =
+    "https://images.pexels.com/photos/2088210/pexels-photo-2088210.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1";
