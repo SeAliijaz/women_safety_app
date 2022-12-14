@@ -14,8 +14,10 @@ class MediaQuerySize {
   double get width => MediaQuery.of(context).size.width;
 }
 
-///Web view Links
+///Web view Links Class
 class WebViewURLClass {
+  ///Web view Links
+
   String webViewURL0 =
       "https://gulfnews.com/world/asia/pakistan/womens-day-10-pakistani-women-inspiring-the-country-1.77696239";
   String webViewURL1 =
@@ -26,6 +28,8 @@ class WebViewURLClass {
       "https://www.healthline.com/health/womens-health/self-defense-tips-escape";
 }
 
+///URL CLASS
+///For All URl's
 class URLClass {
   ///my Profile pic link
   String profilePic =
