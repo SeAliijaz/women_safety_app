@@ -84,7 +84,6 @@ class _RegisterParentUserState extends State<RegisterParentUser> {
 
   @override
   Widget build(BuildContext context) {
-    final Size s = MediaQuery.of(context).size;
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -97,7 +96,7 @@ class _RegisterParentUserState extends State<RegisterParentUser> {
                       child: Column(
                         children: [
                           Container(
-                            height: MediaQuery.of(context).size.height * 0.35,
+                            height: MyUtility(context).height * 0.35,
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
@@ -119,7 +118,7 @@ class _RegisterParentUserState extends State<RegisterParentUser> {
                             ),
                           ),
                           Container(
-                            height: MediaQuery.of(context).size.height * 0.75,
+                            height: MyUtility(context).height * 0.75,
                             child: Form(
                               key: formKey,
                               child: Column(

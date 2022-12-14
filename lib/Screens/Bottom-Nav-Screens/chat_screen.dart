@@ -7,7 +7,6 @@ class ChatScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     return Scaffold(
       body: SafeArea(
         child: Column(
@@ -91,8 +90,8 @@ class ChatScreen extends StatelessWidget {
                     return index % 2 == 0
                         ? Container(
                             margin: EdgeInsets.fromLTRB(
-                                2.5, 2.5, size.width * 0.3, 2.5),
-                            width: size.width * 0.65,
+                                2.5, 2.5, MyUtility(context).width * 0.3, 2.5),
+                            width: MyUtility(context).width * 0.65,
                             child: Card(
                               elevation: 3.0,
                               shape: RoundedRectangleBorder(
@@ -120,7 +119,8 @@ class ChatScreen extends StatelessWidget {
                                     ),
                                     const SizedBox(width: 5.0),
                                     SizedBox(
-                                      width: size.width * 0.65 - 43.0,
+                                      width: MyUtility(context).width * 0.65 -
+                                          43.0,
                                       child: const Text(
                                         'Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum tenetur error, harum nesciunt ipsum debitis quas aliquid.',
                                         textAlign: TextAlign.justify,
@@ -134,8 +134,8 @@ class ChatScreen extends StatelessWidget {
                           )
                         : Container(
                             margin: EdgeInsets.fromLTRB(
-                                size.width * 0.3, 2.5, 2.5, 2.5),
-                            width: size.width * 0.65,
+                                MyUtility(context).width * 0.3, 2.5, 2.5, 2.5),
+                            width: MyUtility(context).width * 0.65,
                             child: Card(
                               color: Colors.blue[50],
                               elevation: 3.0,

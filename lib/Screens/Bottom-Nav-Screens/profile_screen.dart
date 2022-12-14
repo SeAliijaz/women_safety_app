@@ -32,7 +32,6 @@ class ProfileScreen extends StatelessWidget {
       );
     }
 
-    final Size s = MediaQuery.of(context).size;
     return Scaffold(
         appBar: AppBar(
           backgroundColor: primaryColor,
@@ -40,8 +39,8 @@ class ProfileScreen extends StatelessWidget {
         ),
         body: SafeArea(
           child: SizedBox(
-            height: s.height,
-            width: s.width,
+            height: MyUtility(context).height,
+            width: MyUtility(context).width,
             child: Padding(
               padding: const EdgeInsets.symmetric(
                 vertical: 10,
@@ -111,11 +110,11 @@ class ProfileScreen extends StatelessWidget {
                   SizedBox(height: 20),
 
                   MaterialButton(
-                    height: s.height * 0.070,
+                    height: MyUtility(context).height * 0.070,
                     elevation: 10,
                     splashColor: const Color.fromARGB(255, 158, 158, 158)
                         .withOpacity(0.5),
-                    minWidth: s.width / 1.05,
+                    minWidth: MyUtility(context).width / 1.05,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10),
                     ),

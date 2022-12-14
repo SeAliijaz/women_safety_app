@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:women_safety_app/Utils/constants.dart';
 
 ///Using this to make responsive for web and app
 class Responsive extends StatelessWidget {
@@ -15,26 +16,23 @@ class Responsive extends StatelessWidget {
     this.mobileLarge,
   }) : super(key: key);
 
-  static bool isMobile(BuildContext context) =>
-      MediaQuery.of(context).size.width <= 500;
+  static bool isMobile(BuildContext context) => MyUtility(context).width <= 500;
 
   static bool isMobileLarge(BuildContext context) =>
-      MediaQuery.of(context).size.width <= 700;
+      MyUtility(context).width <= 700;
 
-  static bool isTablet(BuildContext context) =>
-      MediaQuery.of(context).size.width < 1024;
+  static bool isTablet(BuildContext context) => MyUtility(context).width < 1024;
 
   static bool isDesktop(BuildContext context) =>
-      MediaQuery.of(context).size.width >= 1024;
+      MyUtility(context).width >= 1024;
 
   @override
   Widget build(BuildContext context) {
-    final Size responsiveSize = MediaQuery.of(context).size;
-    if (responsiveSize.width >= 1024) {
+    if (MyUtility(context).width >= 1024) {
       return desktop;
-    } else if (responsiveSize.width >= 700 && tablet != null) {
+    } else if (MyUtility(context).width >= 700 && tablet != null) {
       return tablet!;
-    } else if (responsiveSize.width >= 500 && mobileLarge != null) {
+    } else if (MyUtility(context).width >= 500 && mobileLarge != null) {
       return mobileLarge!;
     } else {
       return mobile;
@@ -42,26 +40,26 @@ class Responsive extends StatelessWidget {
   }
 }
 //////// OR YOU CAN USE THIS TO MAKE RESPONSIVE ///////////////////s
-// class ResponsiveSize {
+// class MyUtility(context) {
 //   ///isMobile
 //   static bool isMobile(BuildContext context) {
-//     return MediaQuery.of(context).size.width < 690;
+//     return MyUtility(context).width < 690;
 //   }
 
 //   ///isTablet
 //   static bool isTablet(BuildContext context) {
-//     return MediaQuery.of(context).size.width < 850 &&
-//         MediaQuery.of(context).size.width >= 690;
+//     return MyUtility(context).width < 850 &&
+//         MyUtility(context).width >= 690;
 //   }
 
 //   ///isDesktop
 //   static bool isDesktop(BuildContext context) {
-//     return MediaQuery.of(context).size.width < 1500 &&
-//         MediaQuery.of(context).size.width >= 850;
+//     return MyUtility(context).width < 1500 &&
+//         MyUtility(context).width >= 850;
 //   }
 
 //   ///IsWideDesktop
 //   static bool isWideDesktop(BuildContext context) {
-//     return MediaQuery.of(context).size.width >= 1500;
+//     return MyUtility(context).width >= 1500;
 //   }
 // }

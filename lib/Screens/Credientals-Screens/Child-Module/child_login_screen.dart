@@ -70,7 +70,6 @@ class _ChildLogInScreenState extends State<ChildLogInScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final Size s = MediaQuery.of(context).size;
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -78,8 +77,8 @@ class _ChildLogInScreenState extends State<ChildLogInScreen> {
           child: Center(
             child: SingleChildScrollView(
               child: SizedBox(
-                height: s.height * 0.9,
-                width: s.width,
+                height: MyUtility(context).height * 0.9,
+                width: MyUtility(context).width,
                 child: Form(
                   key: formKey,
                   child: Column(

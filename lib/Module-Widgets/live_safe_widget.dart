@@ -22,11 +22,9 @@ class LiveSafeWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Size s = MediaQuery.of(context).size;
-
     return Container(
       height: 100,
-      width: s.width,
+      width: MyUtility(context).width,
       child: ListView(
         physics: const BouncingScrollPhysics(),
         scrollDirection: Axis.horizontal,

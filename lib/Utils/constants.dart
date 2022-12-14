@@ -1,6 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
+///Assigning mediaQuery variable to use globally
+class MyUtility {
+  BuildContext context;
+  // MyUtility(this.context) : assert(context != null);
+  MyUtility(this.context);
+
+  double get height => MediaQuery.of(context).size.height;
+  double get width => MediaQuery.of(context).size.width;
+}
+
 ///Primary Color
 Color primaryColor = const Color(0xfffc3b77);
 
