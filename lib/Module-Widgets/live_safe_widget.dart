@@ -16,7 +16,7 @@ class LiveSafeWidget extends StatelessWidget {
     try {
       await launchUrl(link);
     } catch (e) {
-      showMessage('something went wrong! call emergency number');
+      ShowMessages().message('something went wrong! call emergency number');
     }
   }
 
@@ -24,7 +24,7 @@ class LiveSafeWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 100,
-      width: MyUtility(context).width,
+      width: MediaQuerySize(context).width,
       child: ListView(
         physics: const BouncingScrollPhysics(),
         scrollDirection: Axis.horizontal,

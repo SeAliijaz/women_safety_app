@@ -11,7 +11,7 @@ class EmergencyCardWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 180,
-      width: MyUtility(context).width,
+      width: MediaQuerySize(context).width,
       child: ListView(
         physics: BouncingScrollPhysics(),
         scrollDirection: Axis.horizontal,

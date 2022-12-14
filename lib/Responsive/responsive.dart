@@ -16,23 +16,25 @@ class Responsive extends StatelessWidget {
     this.mobileLarge,
   }) : super(key: key);
 
-  static bool isMobile(BuildContext context) => MyUtility(context).width <= 500;
+  static bool isMobile(BuildContext context) =>
+      MediaQuerySize(context).width <= 500;
 
   static bool isMobileLarge(BuildContext context) =>
-      MyUtility(context).width <= 700;
+      MediaQuerySize(context).width <= 700;
 
-  static bool isTablet(BuildContext context) => MyUtility(context).width < 1024;
+  static bool isTablet(BuildContext context) =>
+      MediaQuerySize(context).width < 1024;
 
   static bool isDesktop(BuildContext context) =>
-      MyUtility(context).width >= 1024;
+      MediaQuerySize(context).width >= 1024;
 
   @override
   Widget build(BuildContext context) {
-    if (MyUtility(context).width >= 1024) {
+    if (MediaQuerySize(context).width >= 1024) {
       return desktop;
-    } else if (MyUtility(context).width >= 700 && tablet != null) {
+    } else if (MediaQuerySize(context).width >= 700 && tablet != null) {
       return tablet!;
-    } else if (MyUtility(context).width >= 500 && mobileLarge != null) {
+    } else if (MediaQuerySize(context).width >= 500 && mobileLarge != null) {
       return mobileLarge!;
     } else {
       return mobile;
@@ -40,26 +42,26 @@ class Responsive extends StatelessWidget {
   }
 }
 //////// OR YOU CAN USE THIS TO MAKE RESPONSIVE ///////////////////s
-// class MyUtility(context) {
+// class MediaQuerySize(context) {
 //   ///isMobile
 //   static bool isMobile(BuildContext context) {
-//     return MyUtility(context).width < 690;
+//     return MediaQuerySize(context).width < 690;
 //   }
 
 //   ///isTablet
 //   static bool isTablet(BuildContext context) {
-//     return MyUtility(context).width < 850 &&
-//         MyUtility(context).width >= 690;
+//     return MediaQuerySize(context).width < 850 &&
+//         MediaQuerySize(context).width >= 690;
 //   }
 
 //   ///isDesktop
 //   static bool isDesktop(BuildContext context) {
-//     return MyUtility(context).width < 1500 &&
-//         MyUtility(context).width >= 850;
+//     return MediaQuerySize(context).width < 1500 &&
+//         MediaQuerySize(context).width >= 850;
 //   }
 
 //   ///IsWideDesktop
 //   static bool isWideDesktop(BuildContext context) {
-//     return MyUtility(context).width >= 1500;
+//     return MediaQuerySize(context).width >= 1500;
 //   }
 // }

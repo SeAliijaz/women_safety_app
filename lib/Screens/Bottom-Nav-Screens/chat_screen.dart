@@ -19,7 +19,7 @@ class ChatScreen extends StatelessWidget {
                   IconButton(
                     icon: const Icon(Icons.arrow_back),
                     onPressed: () {
-                      showMessage("Will go back");
+                      ShowMessages().message("Will go back");
                     },
                   ),
                   Container(
@@ -28,7 +28,8 @@ class ChatScreen extends StatelessWidget {
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       image: DecorationImage(
-                        image: CachedNetworkImageProvider(profilePic),
+                        image:
+                            CachedNetworkImageProvider(URLClass().profilePic),
                       ),
                       border: Border.all(
                         color: const Color(0xff025f7f),
@@ -62,7 +63,7 @@ class ChatScreen extends StatelessWidget {
                       color: Color(0xff025f7f),
                     ),
                     onPressed: () {
-                      showMessage("Calling");
+                      ShowMessages().message("Calling");
                     },
                   ),
                   IconButton(
@@ -71,7 +72,7 @@ class ChatScreen extends StatelessWidget {
                       color: Color(0xff025f7f),
                     ),
                     onPressed: () {
-                      showMessage("User Info");
+                      ShowMessages().message("User Info");
                     },
                   ),
                 ],
@@ -89,9 +90,9 @@ class ChatScreen extends StatelessWidget {
                   itemBuilder: (context, index) {
                     return index % 2 == 0
                         ? Container(
-                            margin: EdgeInsets.fromLTRB(
-                                2.5, 2.5, MyUtility(context).width * 0.3, 2.5),
-                            width: MyUtility(context).width * 0.65,
+                            margin: EdgeInsets.fromLTRB(2.5, 2.5,
+                                MediaQuerySize(context).width * 0.3, 2.5),
+                            width: MediaQuerySize(context).width * 0.65,
                             child: Card(
                               elevation: 3.0,
                               shape: RoundedRectangleBorder(
@@ -109,7 +110,7 @@ class ChatScreen extends StatelessWidget {
                                         shape: BoxShape.circle,
                                         image: DecorationImage(
                                           image: CachedNetworkImageProvider(
-                                              profilePic),
+                                              URLClass().profilePic),
                                         ),
                                         border: Border.all(
                                           color: const Color(0xff025f7f),
@@ -119,8 +120,9 @@ class ChatScreen extends StatelessWidget {
                                     ),
                                     const SizedBox(width: 5.0),
                                     SizedBox(
-                                      width: MyUtility(context).width * 0.65 -
-                                          43.0,
+                                      width:
+                                          MediaQuerySize(context).width * 0.65 -
+                                              43.0,
                                       child: const Text(
                                         'Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum tenetur error, harum nesciunt ipsum debitis quas aliquid.',
                                         textAlign: TextAlign.justify,
@@ -134,8 +136,11 @@ class ChatScreen extends StatelessWidget {
                           )
                         : Container(
                             margin: EdgeInsets.fromLTRB(
-                                MyUtility(context).width * 0.3, 2.5, 2.5, 2.5),
-                            width: MyUtility(context).width * 0.65,
+                                MediaQuerySize(context).width * 0.3,
+                                2.5,
+                                2.5,
+                                2.5),
+                            width: MediaQuerySize(context).width * 0.65,
                             child: Card(
                               color: Colors.blue[50],
                               elevation: 3.0,
@@ -167,7 +172,8 @@ class ChatScreen extends StatelessWidget {
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       image: DecorationImage(
-                        image: CachedNetworkImageProvider(profilePic),
+                        image:
+                            CachedNetworkImageProvider(URLClass().profilePic),
                       ),
                       border: Border.all(
                         color: const Color(0xff025f7f),
@@ -187,7 +193,8 @@ class ChatScreen extends StatelessWidget {
                           suffixIcon: IconButton(
                             icon:
                                 const Icon(Icons.mic, color: Color(0xff025f7f)),
-                            onPressed: () => showMessage('Mic Pressed'),
+                            onPressed: () =>
+                                ShowMessages().message('Mic Pressed'),
                           ),
                           contentPadding:
                               const EdgeInsets.fromLTRB(12.0, 8.0, 8.0, 12.0),
@@ -217,7 +224,7 @@ class ChatScreen extends StatelessWidget {
                       color: Color(0xff025f7f),
                     ),
                     onTap: () {
-                      showMessage("msg sent");
+                      ShowMessages().message("msg sent");
                     },
                   ),
                   const SizedBox(width: 5.0),
@@ -251,7 +258,7 @@ Future<void> showBottomSheetOptions(BuildContext context) {
               mainAxisSize: MainAxisSize.min,
               children: [
                 MaterialButton(
-                  onPressed: () => showMessage("Will update later."),
+                  onPressed: () => ShowMessages().message("Will update later."),
                   color: const Color(0xff025f7f),
                   textColor: Colors.white,
                   child: const Icon(
@@ -275,7 +282,7 @@ Future<void> showBottomSheetOptions(BuildContext context) {
               mainAxisSize: MainAxisSize.min,
               children: [
                 MaterialButton(
-                  onPressed: () => showMessage("Will update later."),
+                  onPressed: () => ShowMessages().message("Will update later."),
                   color: const Color(0xff025f7f),
                   textColor: Colors.white,
                   child: const Icon(
@@ -299,7 +306,7 @@ Future<void> showBottomSheetOptions(BuildContext context) {
               mainAxisSize: MainAxisSize.min,
               children: [
                 MaterialButton(
-                  onPressed: () => showMessage("Will update later."),
+                  onPressed: () => ShowMessages().message("Will update later."),
                   color: const Color(0xff025f7f),
                   textColor: Colors.white,
                   child: const Icon(

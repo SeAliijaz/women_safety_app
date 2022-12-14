@@ -52,19 +52,20 @@ class _LocationBottomSheetState extends State<LocationBottomSheet> {
 
     serviceEnabled = await Geolocator.isLocationServiceEnabled();
     if (!serviceEnabled) {
-      showMessage("Location services are disabled. Please enable the services");
+      ShowMessages().message(
+          "Location services are disabled. Please enable the services");
       return false;
     }
     permission = await Geolocator.checkPermission();
     if (permission == LocationPermission.denied) {
       permission = await Geolocator.requestPermission();
       if (permission == LocationPermission.denied) {
-        showMessage("Location permissions are denied");
+        ShowMessages().message("Location permissions are denied");
         return false;
       }
     }
     if (permission == LocationPermission.deniedForever) {
-      showMessage(
+      ShowMessages().message(
           "Location permissions are permanently denied, we cannot request permissions.");
     }
     return true;

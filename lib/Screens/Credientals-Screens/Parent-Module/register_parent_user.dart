@@ -26,7 +26,7 @@ class _RegisterParentUserState extends State<RegisterParentUser> {
   _onFormSubmit() async {
     formKey.currentState!.save();
     if (formData['password'] != formData['rpassword']) {
-      showMessage('password and retype password should be equal');
+      ShowMessages().message('password and retype password should be equal');
     } else {
       customProgressIndicator(context);
       try {
@@ -59,23 +59,23 @@ class _RegisterParentUserState extends State<RegisterParentUser> {
           });
         }
       } on FirebaseAuthException catch (e) {
-        showMessage(e.toString());
+        ShowMessages().message(e.toString());
         setState(() {
           isLoading = false;
         });
         if (e.code == 'weak-password') {
           debugPrint('The password provided is too weak.');
-          showMessage('The password provided is too weak.');
+          ShowMessages().message('The password provided is too weak.');
         } else if (e.code == 'email-already-in-use') {
           debugPrint('The account already exists for that email.');
-          showMessage('The account already exists for that email.');
+          ShowMessages().message('The account already exists for that email.');
         }
       } catch (e) {
         setState(() {
           isLoading = false;
         });
         debugPrint(e.toString());
-        showMessage(e.toString());
+        ShowMessages().message(e.toString());
       }
     }
     debugPrint(formData['email'].toString());
@@ -96,7 +96,7 @@ class _RegisterParentUserState extends State<RegisterParentUser> {
                       child: Column(
                         children: [
                           Container(
-                            height: MyUtility(context).height * 0.35,
+                            height: MediaQuerySize(context).height * 0.35,
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
@@ -118,7 +118,7 @@ class _RegisterParentUserState extends State<RegisterParentUser> {
                             ),
                           ),
                           Container(
-                            height: MyUtility(context).height * 0.75,
+                            height: MediaQuerySize(context).height * 0.75,
                             child: Form(
                               key: formKey,
                               child: Column(

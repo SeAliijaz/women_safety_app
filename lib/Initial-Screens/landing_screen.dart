@@ -19,7 +19,7 @@ class _LandingScrenState extends State<LandingScren> {
         decoration: BoxDecoration(
           image: DecorationImage(
             fit: BoxFit.fill,
-            image: CachedNetworkImageProvider(landingScreenBg),
+            image: CachedNetworkImageProvider(URLClass().landingScreenBg),
           ),
         ),
         child: ListView(
@@ -51,7 +51,8 @@ class _LandingScrenState extends State<LandingScren> {
                     style: BorderStyle.solid),
                 image: DecorationImage(
                   fit: BoxFit.fitHeight,
-                  image: CachedNetworkImageProvider(womenProtectionImg),
+                  image:
+                      CachedNetworkImageProvider(URLClass().womenProtectionImg),
                 ),
               ),
             ),

@@ -27,7 +27,7 @@ class _RegisterChildUserState extends State<RegisterChildUser> {
   _onFormSubmit() async {
     formKey.currentState!.save();
     if (formData['password'] != formData['rpassword']) {
-      showMessage('password and retype password should be equal');
+      ShowMessages().message('password and retype password should be equal');
     } else {
       customProgressIndicator(context);
       try {
@@ -65,10 +65,10 @@ class _RegisterChildUserState extends State<RegisterChildUser> {
       } on FirebaseAuthException catch (e) {
         if (e.code == 'weak-password') {
           print('The password provided is too weak.');
-          showMessage('The password provided is too weak.');
+          ShowMessages().message('The password provided is too weak.');
         } else if (e.code == 'email-already-in-use') {
           print('The account already exists for that email.');
-          showMessage('The account already exists for that email.');
+          ShowMessages().message('The account already exists for that email.');
         }
         setState(() {
           isLoading = false;
@@ -78,7 +78,7 @@ class _RegisterChildUserState extends State<RegisterChildUser> {
         setState(() {
           isLoading = false;
         });
-        showMessage(e.toString());
+        ShowMessages().message(e.toString());
       }
     }
     print(formData['email']);
@@ -99,7 +99,7 @@ class _RegisterChildUserState extends State<RegisterChildUser> {
                       child: Column(
                         children: [
                           Container(
-                            height: MyUtility(context).height * 0.35,
+                            height: MediaQuerySize(context).height * 0.35,
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
@@ -121,7 +121,7 @@ class _RegisterChildUserState extends State<RegisterChildUser> {
                             ),
                           ),
                           Container(
-                            height: MyUtility(context).height * 0.75,
+                            height: MediaQuerySize(context).height * 0.75,
                             child: Form(
                               key: formKey,
                               child: Column(

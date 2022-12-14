@@ -39,8 +39,8 @@ class ProfileScreen extends StatelessWidget {
         ),
         body: SafeArea(
           child: SizedBox(
-            height: MyUtility(context).height,
-            width: MyUtility(context).width,
+            height: MediaQuerySize(context).height,
+            width: MediaQuerySize(context).width,
             child: Padding(
               padding: const EdgeInsets.symmetric(
                 vertical: 10,
@@ -52,7 +52,8 @@ class ProfileScreen extends StatelessWidget {
                   CircleAvatar(
                     radius: 90,
                     backgroundColor: Colors.grey[500],
-                    backgroundImage: CachedNetworkImageProvider(profilePic),
+                    backgroundImage:
+                        CachedNetworkImageProvider(URLClass().profilePic),
                     child: Align(
                       alignment: Alignment.bottomRight,
                       child: Container(
@@ -65,7 +66,8 @@ class ProfileScreen extends StatelessWidget {
                         ),
                         child: IconButton(
                           onPressed: () {
-                            showMessage("feature will be added soon!");
+                            ShowMessages()
+                                .message("feature will be added soon!");
                           },
                           icon: Icon(
                             Icons.camera_alt,
@@ -110,11 +112,11 @@ class ProfileScreen extends StatelessWidget {
                   SizedBox(height: 20),
 
                   MaterialButton(
-                    height: MyUtility(context).height * 0.070,
+                    height: MediaQuerySize(context).height * 0.070,
                     elevation: 10,
                     splashColor: const Color.fromARGB(255, 158, 158, 158)
                         .withOpacity(0.5),
-                    minWidth: MyUtility(context).width / 1.05,
+                    minWidth: MediaQuerySize(context).width / 1.05,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10),
                     ),

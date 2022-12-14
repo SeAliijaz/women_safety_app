@@ -43,7 +43,7 @@ class _RatingAppScreenState extends State<RatingAppScreen> {
               ///Rating Button
               MaterialButton(
                 height: 60,
-                minWidth: MyUtility(context).width / 2,
+                minWidth: MediaQuerySize(context).width / 2,
                 color: primaryColor,
                 onPressed: () {
                   ///Show Dialog Fields
@@ -190,7 +190,7 @@ class _RatingAppScreenState extends State<RatingAppScreen> {
                   borderRadius: BorderRadius.circular(10),
                 ),
                 height: 50,
-                minWidth: MyUtility(context).width,
+                minWidth: MediaQuerySize(context).width,
                 color: primaryColor,
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {

@@ -40,9 +40,9 @@ class _ContactsScreenState extends State<ContactsScreen> {
 
   handleInvalidPermissions(PermissionStatus permissionStatus) {
     if (permissionStatus == PermissionStatus.denied) {
-      return showMessage('Access denied by user');
+      return ShowMessages().message('Access denied by user');
     } else if (permissionStatus == PermissionStatus.permanentlyDenied) {
-      return showMessage("Contacts does'nt exist");
+      return ShowMessages().message("Contacts does'nt exist");
     } else {
       ///Empty for now
     }

@@ -57,10 +57,10 @@ class _ChildLogInScreenState extends State<ChildLogInScreen> {
         isLoading = false;
       });
       if (e.code == 'user-not-found') {
-        showMessage('No user found for that email.');
+        ShowMessages().message('No user found for that email.');
         debugPrint('No user found for that email.');
       } else if (e.code == 'wrong-password') {
-        showMessage('Wrong password provided for that user.');
+        ShowMessages().message('Wrong password provided for that user.');
         debugPrint('Wrong password provided for that user.');
       }
     }
@@ -77,8 +77,8 @@ class _ChildLogInScreenState extends State<ChildLogInScreen> {
           child: Center(
             child: SingleChildScrollView(
               child: SizedBox(
-                height: MyUtility(context).height * 0.9,
-                width: MyUtility(context).width,
+                height: MediaQuerySize(context).height * 0.9,
+                width: MediaQuerySize(context).width,
                 child: Form(
                   key: formKey,
                   child: Column(
