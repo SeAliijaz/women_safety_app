@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:women_safety_app/Screens/Bottom-Nav-Screens/add_contacts_screen.dart';
 import 'package:women_safety_app/Screens/Bottom-Nav-Screens/chat_screen.dart';
 import 'package:women_safety_app/Screens/Bottom-Nav-Screens/profile_screen.dart';
