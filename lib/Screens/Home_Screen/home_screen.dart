@@ -1,7 +1,10 @@
 import 'dart:math';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:women_safety_app/Initial-Screens/landing_screen.dart';
 import 'package:women_safety_app/Module-Widgets/emergency_card_widget.dart';
 import 'package:women_safety_app/Module-Widgets/live_safe_widget.dart';
+import 'package:women_safety_app/Utils/constants.dart';
 import 'package:women_safety_app/Widgets/Custom-Widgets/carousel_slider_widget.dart';
 import 'package:women_safety_app/Widgets/Custom-Widgets/custom_appbar.dart';
 import 'package:women_safety_app/Widgets/Location-Bottom_Sheet/location_bottom_sheet.dart';
@@ -34,6 +37,22 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: AppColors.primaryColor,
+        title: Text("Women Safety App"),
+        actions: [
+          IconButton(
+            onPressed: () async {
+              await FirebaseAuth.instance.signOut();
+              Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(builder: (context) => LandingScren()),
+                  (route) => false);
+            },
+            icon: Icon(Icons.logout),
+          ),
+        ],
+      ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
         child: SafeArea(

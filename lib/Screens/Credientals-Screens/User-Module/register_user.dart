@@ -1,22 +1,22 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:women_safety_app/Models/user_model.dart';
-import 'package:women_safety_app/Screens/Credientals-Screens/Child-Module/child_login_screen.dart';
+import 'package:women_safety_app/Screens/Credientals-Screens/User-Module/user_login_screen.dart';
 import 'package:women_safety_app/Widgets/Custom-Widgets/text_form_field.dart';
 
 import '../../../Utils/constants.dart';
-import '../../../Widgets/Custom-Buttons/primary_button.dart';
-import '../../../Widgets/Custom-Buttons/secondary_button.dart';
+import '../../../Widgets/Custom-Buttons/custom_button.dart';
 
-class RegisterChildUser extends StatefulWidget {
-  const RegisterChildUser({Key? key}) : super(key: key);
+class RegisterUser extends StatefulWidget {
+  const RegisterUser({Key? key}) : super(key: key);
 
   @override
-  State<RegisterChildUser> createState() => _RegisterChildUserState();
+  State<RegisterUser> createState() => _RegisterUserState();
 }
 
-class _RegisterChildUserState extends State<RegisterChildUser> {
+class _RegisterUserState extends State<RegisterUser> {
   bool isPasswordShown = true;
   bool isRetypePasswordShown = true;
   final formKey = GlobalKey<FormState>();
@@ -29,7 +29,7 @@ class _RegisterChildUserState extends State<RegisterChildUser> {
     if (formData['password'] != formData['rpassword']) {
       ShowMessages().message('password and retype password should be equal');
     } else {
-      customProgressIndicator(context);
+      RoutesAndIndicators().customProgressIndicator(context);
       try {
         setState(() {
           isLoading = true;
@@ -56,7 +56,7 @@ class _RegisterChildUserState extends State<RegisterChildUser> {
           );
           final jsonData = user.toJson();
           await db.set(jsonData).whenComplete(() {
-            goTo(context, ChildLogInScreen());
+            RoutesAndIndicators().goTo(context, UserLogInScreen());
             setState(() {
               isLoading = false;
             });
@@ -94,12 +94,12 @@ class _RegisterChildUserState extends State<RegisterChildUser> {
           child: Stack(
             children: [
               isLoading
-                  ? customProgressIndicator(context)
+                  ? RoutesAndIndicators().customProgressIndicator(context)
                   : SingleChildScrollView(
                       child: Column(
                         children: [
                           Container(
-                            height: MediaQuerySize(context).height * 0.35,
+                            height: 300,
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
@@ -107,14 +107,15 @@ class _RegisterChildUserState extends State<RegisterChildUser> {
                                   "REGISTER AS CHILD",
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
-                                      fontSize: 40,
+                                      fontSize: 35.5,
                                       fontWeight: FontWeight.bold,
-                                      color: primaryColor),
+                                      color: AppColors.primaryColor),
                                 ),
                                 Center(
                                   child: Image.asset(
                                     "assets/logo.png",
-                                    scale: 3,
+                                    height:
+                                        MediaQuerySize(context).height / 3.5,
                                   ),
                                 ),
                               ],
@@ -175,6 +176,7 @@ class _RegisterChildUserState extends State<RegisterChildUser> {
                                           !email.contains("@")) {
                                         return 'Enter correct email';
                                       }
+                                      return null;
                                     },
                                   ),
                                   CustomTextField(
@@ -194,9 +196,9 @@ class _RegisterChildUserState extends State<RegisterChildUser> {
                                     },
                                   ),
                                   CustomTextField(
-                                    labelText: 'enter password',
+                                    labelText: 'Enter Password',
                                     isPassword: isPasswordShown,
-                                    prefixIcon: Icon(Icons.vpn_key_rounded),
+                                    prefixIcon: Icon(FontAwesomeIcons.key),
                                     validator: (password) {
                                       if (password!.isEmpty ||
                                           password.length < 7) {
@@ -218,9 +220,9 @@ class _RegisterChildUserState extends State<RegisterChildUser> {
                                             : Icon(Icons.visibility)),
                                   ),
                                   CustomTextField(
-                                    labelText: 'retype password',
+                                    labelText: 'Retype Password',
                                     isPassword: isRetypePasswordShown,
-                                    prefixIcon: Icon(Icons.vpn_key_rounded),
+                                    prefixIcon: Icon(FontAwesomeIcons.key),
                                     validator: (password) {
                                       if (password!.isEmpty ||
                                           password.length < 7) {
@@ -242,7 +244,7 @@ class _RegisterChildUserState extends State<RegisterChildUser> {
                                             ? Icon(Icons.visibility_off)
                                             : Icon(Icons.visibility)),
                                   ),
-                                  PrimaryButton(
+                                  CustomButton(
                                       title: 'REGISTER',
                                       onPressed: () {
                                         if (formKey.currentState!.validate()) {
@@ -253,10 +255,11 @@ class _RegisterChildUserState extends State<RegisterChildUser> {
                               ),
                             ),
                           ),
-                          SecondaryButton(
+                          CustomButton(
                               title: 'Login with your account',
                               onPressed: () {
-                                goTo(context, ChildLogInScreen());
+                                RoutesAndIndicators()
+                                    .goTo(context, UserLogInScreen());
                               }),
                         ],
                       ),

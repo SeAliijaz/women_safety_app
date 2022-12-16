@@ -103,7 +103,7 @@ class _ContactsScreenState extends State<ContactsScreen> {
     bool listItemExists = (contactFilters.length > 0 || contacts.length > 0);
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: primaryColor,
+        backgroundColor: AppColors.primaryColor,
         title: contacts.length == 0 ? Text("Loading...") : Text("Contacts"),
       ),
       body: contacts.length == 0
@@ -118,6 +118,7 @@ class _ContactsScreenState extends State<ContactsScreen> {
                         ///Search Field
                         CustomTextField(
                           prefixIcon: Icon(Icons.search),
+                          filled: true,
                           controller: searchController,
                           labelText: "Search Contacts",
                         ),

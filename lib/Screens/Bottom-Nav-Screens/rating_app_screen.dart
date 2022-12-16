@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/services.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:women_safety_app/Utils/constants.dart';
 import 'package:women_safety_app/Widgets/Custom-Widgets/progress_indicator.dart';
 
@@ -33,7 +34,7 @@ class _RatingAppScreenState extends State<RatingAppScreen> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: primaryColor,
+          backgroundColor: AppColors.primaryColor,
           title: const Text("Give Us Rating"),
         ),
         body: Padding(
@@ -42,9 +43,10 @@ class _RatingAppScreenState extends State<RatingAppScreen> {
             children: [
               ///Rating Button
               MaterialButton(
+                elevation: 5,
                 height: 60,
                 minWidth: MediaQuerySize(context).width / 2,
-                color: primaryColor,
+                color: AppColors.primaryColor,
                 onPressed: () {
                   ///Show Dialog Fields
                   showDialogMethod(context);
@@ -53,7 +55,7 @@ class _RatingAppScreenState extends State<RatingAppScreen> {
                   "Press Here to give Your Rating",
                   style: TextStyle(
                     color: Colors.white,
-                    fontWeight: FontWeight.bold,
+                    fontSize: 18,
                   ),
                 ),
               ),
@@ -72,7 +74,9 @@ class _RatingAppScreenState extends State<RatingAppScreen> {
                     if (snapshot.connectionState == ConnectionState.waiting ||
                         snapshot.connectionState == ConnectionState.none ||
                         snapshot.connectionState == ConnectionState.waiting) {
-                      return Center(child: customProgressIndicator(context));
+                      return Center(
+                          child: RoutesAndIndicators()
+                              .customProgressIndicator(context));
                     }
                     if (snapshot.data!.docs.isEmpty) {
                       return Center(
@@ -98,12 +102,12 @@ class _RatingAppScreenState extends State<RatingAppScreen> {
                           elevation: 5,
                           child: ListTile(
                             textColor: Colors.black,
-                            leading: Icon(Icons.feedback),
+                            leading: Icon(Icons.feedback_outlined),
                             title: Text(
                                 "Location: ${snapshot.data!.docs[index]["title"]}"),
                             subtitle: Text(
-                                "Review: ${snapshot.data!.docs[index]['detail']}"),
-                            trailing: const Icon(Icons.reviews_sharp),
+                                "Rating: ${snapshot.data!.docs[index]['detail']}"),
+                            trailing: const Icon(FontAwesomeIcons.star),
                           ),
                         );
                       },
@@ -143,8 +147,8 @@ class _RatingAppScreenState extends State<RatingAppScreen> {
                       validator: (value) {
                         if (value!.isEmpty) {
                           return "Field Should not be empty";
-                        } else if (value.length <= 4) {
-                          return "Length should be more than 4";
+                        } else if (value.length <= 3) {
+                          return "Length should be more than 3";
                         }
                         return null;
                       },
@@ -191,7 +195,7 @@ class _RatingAppScreenState extends State<RatingAppScreen> {
                 ),
                 height: 50,
                 minWidth: MediaQuerySize(context).width,
-                color: primaryColor,
+                color: AppColors.primaryColor,
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
                     saveRatingReview();

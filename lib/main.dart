@@ -1,9 +1,10 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:women_safety_app/Initial-Screens/splash_screen.dart';
 import 'package:women_safety_app/Module-Widgets/bottom_nav_screen.dart';
-import 'package:women_safety_app/Screens/Credientals-Screens/Child-Module/child_login_screen.dart';
-import 'package:women_safety_app/Screens/Credientals-Screens/Parent-Module/parent_home_screen.dart';
+import 'package:women_safety_app/Screens/Credientals-Screens/User-Module/user_login_screen.dart';
+import 'package:women_safety_app/Screens/Credientals-Screens/Guardian-Module/guardian_home_screen.dart';
 import 'package:women_safety_app/Shared-Preferences/shared_preferences.dart';
 import 'package:women_safety_app/Utils/constants.dart';
 
@@ -39,17 +40,35 @@ class MyApp extends StatelessWidget {
         future: MySharedPreferences.getUserType(),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           if (snapshot.data == "") {
+            return UserLogInScreen();
+          }
+          if (snapshot.data == "child") {
+            return BottomNavScreen();
+          }
+          if (snapshot.data == "parent") {
+            return GuardianHomeScreen();
+          }
+          return RoutesAndIndicators().customProgressIndicator(context);
+        },
+      ),
+
+      /*
+FutureBuilder(
+        future: MySharedPreferences.getUserType(),
+        builder: (BuildContext context, AsyncSnapshot snapshot) {
+          if (snapshot.data == "") {
             return ChildLogInScreen();
           }
           if (snapshot.data == "child") {
             return BottomNavScreen();
           }
           if (snapshot.data == "parent") {
-            return ParentHomeScreen();
+            return GuardianHomeScreen();
           }
           return customProgressIndicator(context);
         },
       ),
+      */
     );
   }
 }

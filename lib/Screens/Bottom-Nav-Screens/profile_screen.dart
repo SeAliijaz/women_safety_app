@@ -34,7 +34,7 @@ class ProfileScreen extends StatelessWidget {
 
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: primaryColor,
+          backgroundColor: AppColors.primaryColor,
           title: const Text("Edit Profile"),
         ),
         body: SafeArea(
@@ -58,7 +58,7 @@ class ProfileScreen extends StatelessWidget {
                       alignment: Alignment.bottomRight,
                       child: Container(
                         decoration: BoxDecoration(
-                          color: primaryColor,
+                          color: AppColors.primaryColor,
                           border: Border.all(
                             color: Colors.grey.withOpacity(0.3),
                           ),
@@ -120,7 +120,7 @@ class ProfileScreen extends StatelessWidget {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10),
                     ),
-                    color: primaryColor,
+                    color: AppColors.primaryColor,
                     child: Text(
                       "Save Info",
                       style: TextStyle(

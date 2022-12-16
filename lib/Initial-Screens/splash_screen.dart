@@ -1,7 +1,8 @@
 import 'dart:async';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:women_safety_app/Initial-Screens/landing_screen.dart';
 import 'package:women_safety_app/Utils/constants.dart';
-import 'landing_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -14,10 +15,10 @@ class _SplashScreenState extends State<SplashScreen> {
   Timer? _timer;
 
   @override
-  void initState() async {
+  void initState() {
     super.initState();
     _timer = Timer(const Duration(seconds: 5), () {
-      goTo(context, const LandingScren());
+      RoutesAndIndicators().goTo(context, const LandingScren());
     });
   }
 
@@ -30,24 +31,47 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-      body: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(14.0),
-            child: Image.asset("images/logo.png"),
+      backgroundColor: Colors.primaries[15],
+      body: SizedBox(
+        height: MediaQuerySize(context).height,
+        width: MediaQuerySize(context).width,
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Center(
+                child: Container(
+                  height: MediaQuerySize(context).height * 0.45,
+                  width: MediaQuerySize(context).width,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    image: DecorationImage(
+                      fit: BoxFit.fitHeight,
+                      image: CachedNetworkImageProvider(
+                          URLClass().womenProtectionImg),
+                    ),
+                  ),
+                ),
+              ),
+              Center(
+                child: Text(
+                  "Women Safety App",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: MediaQuerySize(context).height * 0.045,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+              Center(
+                child: CircularProgressIndicator(
+                  color: Colors.white,
+                  backgroundColor: AppColors.primaryColor,
+                ),
+              ),
+            ],
           ),
-          const Text(
-            "Doctor Patient App",
-            style: TextStyle(fontSize: 30),
-          ),
-          const SizedBox(
-            height: 50,
-          ),
-          const Center(
-            child: CircularProgressIndicator(),
-          ),
-        ],
+        ),
       ),
     );
   }

@@ -25,7 +25,7 @@ class CustomProgressIndicator extends StatelessWidget {
         SizedBox(height: 15),
         Center(
             child: CircularProgressIndicator(
-          backgroundColor: primaryColor,
+          backgroundColor: AppColors.primaryColor,
           color: Colors.red,
           strokeWidth: 7,
         )),

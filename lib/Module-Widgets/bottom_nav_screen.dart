@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:women_safety_app/Screens/Bottom-Nav-Screens/add_contacts_screen.dart';
 import 'package:women_safety_app/Screens/Bottom-Nav-Screens/chat_screen.dart';
-import 'package:women_safety_app/Screens/Bottom-Nav-Screens/contacts_screen.dart';
 import 'package:women_safety_app/Screens/Bottom-Nav-Screens/profile_screen.dart';
 import 'package:women_safety_app/Screens/Bottom-Nav-Screens/rating_app_screen.dart';
 import 'package:women_safety_app/Screens/Home_Screen/home_screen.dart';
@@ -19,7 +20,7 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
   ///Screens
   List<Widget> screenRoutes = [
     HomeScreen(),
-    ContactsScreen(),
+    AddTrustedContacts(),
     ChatScreen(),
     ProfileScreen(),
     RatingAppScreen(),
@@ -50,32 +51,17 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
         onTap: onTapped,
 
         ///BottomNavigationBarItem
-        items: [
+        items: const [
           BottomNavigationBarItem(
-              label: 'Home',
-              icon: Icon(
-                Icons.home,
-              )),
+              label: 'Home', icon: Icon(Icons.home_outlined)),
           BottomNavigationBarItem(
-              label: 'Contacts',
-              icon: Icon(
-                Icons.contacts,
-              )),
+              label: 'Contacts', icon: Icon(Icons.contacts_outlined)),
           BottomNavigationBarItem(
-              label: 'Chats',
-              icon: Icon(
-                Icons.chat,
-              )),
+              label: 'Chats', icon: Icon(Icons.message_outlined)),
           BottomNavigationBarItem(
-              label: 'Profile',
-              icon: Icon(
-                Icons.person,
-              )),
+              label: 'Profile', icon: Icon(Icons.person_outline)),
           BottomNavigationBarItem(
-              label: 'Review',
-              icon: Icon(
-                Icons.reviews,
-              ))
+              label: 'Review', icon: Icon(Icons.star_outline))
         ],
       ),
     );

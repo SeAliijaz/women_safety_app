@@ -14,22 +14,25 @@ class CustomTextField extends StatelessWidget {
   final FocusNode? focusNode;
   final Widget? prefixIcon;
   final Widget? suffixIcon;
+  final bool filled;
 
-  const CustomTextField(
-      {super.key,
-      this.controller,
-      this.check,
-      this.enable = true,
-      this.focusNode,
-      this.labelText,
-      this.isPassword = false,
-      this.keyboardType,
-      this.maxLines,
-      this.onSaved,
-      this.prefixIcon,
-      this.suffixIcon,
-      this.textInputAction,
-      this.validator});
+  const CustomTextField({
+    super.key,
+    this.controller,
+    this.check,
+    this.enable = true,
+    this.focusNode,
+    this.labelText,
+    this.isPassword = false,
+    this.keyboardType,
+    this.maxLines,
+    this.onSaved,
+    this.prefixIcon,
+    this.suffixIcon,
+    this.textInputAction,
+    this.validator,
+    this.filled = false,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -47,6 +50,7 @@ class CustomTextField extends StatelessWidget {
         prefixIcon: prefixIcon,
         suffixIcon: suffixIcon,
         labelText: labelText ?? "Label Text..",
+        filled: filled,
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
           borderSide: BorderSide(
