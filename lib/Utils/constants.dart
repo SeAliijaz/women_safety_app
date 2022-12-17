@@ -87,7 +87,7 @@ class ShowMessages {
 ///Routes And Indicator
 class RoutesAndIndicators {
   ///Custom Navigator
-  void goTo(BuildContext context, Widget nextScreen) {
+  goTo(BuildContext context, Widget nextScreen) {
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => nextScreen),

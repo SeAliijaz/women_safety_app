@@ -1,6 +1,8 @@
 import 'package:contacts_service/contacts_service.dart';
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:women_safety_app/Database-Helper/database_helper.dart';
+import 'package:women_safety_app/Models/contacts_model.dart';
 import 'package:women_safety_app/Utils/constants.dart';
 import 'package:women_safety_app/Widgets/Custom-Widgets/progress_indicator.dart';
 import 'package:women_safety_app/Widgets/Custom-Widgets/text_form_field.dart';
@@ -32,7 +34,8 @@ class _ContactsScreenState extends State<ContactsScreen> {
   }
 
   getAllContacts() async {
-    List<Contact> getContacts = await ContactsService.getContacts();
+    List<Contact> getContacts =
+        await ContactsService.getContacts(withThumbnails: false);
     setState(() {
       contacts = getContacts;
     });
@@ -97,6 +100,8 @@ class _ContactsScreenState extends State<ContactsScreen> {
     });
   }
 
+  DataBaseHelper _dataBaseHelper = DataBaseHelper();
+
   @override
   Widget build(BuildContext context) {
     bool isSearching = searchController.text.isNotEmpty;
@@ -133,18 +138,31 @@ class _ContactsScreenState extends State<ContactsScreen> {
                                 ? contactFilters.length
                                 : contacts.length,
                             itemBuilder: (BuildContext context, int index) {
-                              Contact value = isSearching == true
+                              Contact contact = isSearching == true
                                   ? contactFilters[index]
                                   : contacts[index];
                               return ListTile(
-                                leading: value.avatar != null &&
-                                        value.avatar!.length > 0
+                                title: Text(contact.displayName!),
+                                leading: contact.avatar != null &&
+                                        contact.avatar!.length > 0
                                     ? CircleAvatar(
                                         backgroundImage:
-                                            MemoryImage(value.avatar!),
+                                            MemoryImage(contact.avatar!),
                                       )
-                                    : Text(value.initials()),
-                                title: Text(value.displayName!),
+                                    : Text(contact.initials()),
+                                onTap: () {
+                                  if (contact.phones!.length > 0) {
+                                    final String phoneNum =
+                                        contact.phones!.elementAt(0).value!;
+                                    final String name = contact.displayName!;
+                                    _addContact(
+                                      ContactModel(phoneNum, name),
+                                    );
+                                  } else {
+                                    ShowMessages().message(
+                                        "phone number of this contact does not exists");
+                                  }
+                                },
                               );
                             },
                           ),
@@ -156,5 +174,17 @@ class _ContactsScreenState extends State<ContactsScreen> {
                     ),
             ),
     );
+  }
+
+  void _addContact(ContactModel contact) async {
+    int result = await _dataBaseHelper.insertContact(contact);
+
+    if (result != 0) {
+      ShowMessages()
+          .message("Contact ${contact.name} is Added to Trusted Contacts");
+    } else {
+      ShowMessages().message("Failed To Add ${contact.name} Contact");
+    }
+    Navigator.of(context).pop(true);
   }
 }

@@ -12,6 +12,7 @@ class ProfileScreen extends StatelessWidget {
       final String? titleText,
       final String? subTitleText,
       final IconData? trailingIcon,
+      final VoidCallback? onPressed,
     }) {
       return Card(
         shadowColor: Colors.grey,
@@ -20,10 +21,12 @@ class ProfileScreen extends StatelessWidget {
         ),
         elevation: 5,
         child: ListTile(
+          onTap: onPressed,
+          iconColor: AppColors.primaryColor,
+          textColor: Colors.black,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10),
           ),
-          textColor: Colors.black,
           leading: Icon(leadingIcon ?? Icons.edit),
           title: Text(titleText ?? ""),
           subtitle: Text(subTitleText ?? ""),
@@ -88,24 +91,36 @@ class ProfileScreen extends StatelessWidget {
                     titleText: "Name",
                     subTitleText: "Muhammad Ali",
                     trailingIcon: Icons.edit,
+                    onPressed: () {
+                      ShowMessages().message("Feature will be added soon");
+                    },
                   ),
                   listTile(
                     leadingIcon: Icons.mail,
                     titleText: "Email",
                     subTitleText: "Ali@gmail.com",
                     trailingIcon: Icons.edit,
+                    onPressed: () {
+                      ShowMessages().message("Feature will be added soon");
+                    },
                   ),
                   listTile(
                     leadingIcon: Icons.phone,
                     titleText: "Phone",
                     subTitleText: "0309-4991850",
                     trailingIcon: Icons.edit,
+                    onPressed: () {
+                      ShowMessages().message("Feature will be added soon");
+                    },
                   ),
                   listTile(
                     leadingIcon: Icons.logout,
                     titleText: "Logout",
                     subTitleText: "As a UserType",
                     trailingIcon: Icons.arrow_forward_ios,
+                    onPressed: () {
+                      ShowMessages().message("Feature will be added soon");
+                    },
                   ),
 
                   ///SizedBox
@@ -125,11 +140,12 @@ class ProfileScreen extends StatelessWidget {
                       "Save Info",
                       style: TextStyle(
                         fontSize: 20,
-                        fontWeight: FontWeight.bold,
                         color: Colors.white,
                       ),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      ShowMessages().message("Feature will be added soon");
+                    },
                   ),
                 ],
               ),
