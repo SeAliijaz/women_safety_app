@@ -18,26 +18,20 @@ class DataBaseHelper {
   //want to initialize the db.
   factory DataBaseHelper() {
     //factory keyword allows the constructor to return some value
-    if (_databaseHelper == null) {
-      //create an instance of _DatabaseHelper iff there is no instance created before
-      _databaseHelper = DataBaseHelper._createInstance();
-      //because of that null check this line above runs once only
-    }
+    _databaseHelper ??= DataBaseHelper._createInstance();
     return _databaseHelper!;
   }
 
   // lets initialize the database
   static Database? _database;
   Future<Database> get database async {
-    if (_database == null) {
-      _database = await initializeDatabase();
-    }
+    _database ??= await initializeDatabase();
     return _database!;
   }
 
   Future<Database> initializeDatabase() async {
     String directoryPath = await getDatabasesPath();
-    String dbLocation = directoryPath + 'contact.db';
+    String dbLocation = '${directoryPath}contact.db';
 
     var contactDatabase =
         await openDatabase(dbLocation, version: 1, onCreate: _createDbTable);
@@ -51,7 +45,7 @@ class DataBaseHelper {
 
   // Fetch Operation: get contact object from db
   Future<List<Map<String, dynamic>>> getContactMapList() async {
-    Database db = await this.database;
+    Database db = await database;
     List<Map<String, dynamic>> result =
         await db.rawQuery('SELECT * FROM $contactTable order by $colId ASC');
 
@@ -62,7 +56,7 @@ class DataBaseHelper {
 
   //Insert a contact object
   Future<int> insertContact(ContactModel contact) async {
-    Database db = await this.database;
+    Database db = await database;
     var result = await db.insert(contactTable, contact.toMap());
     // print(await db.query(contactTable));
     return result;
@@ -70,7 +64,7 @@ class DataBaseHelper {
 
   // update a contact object
   Future<int> updateContact(ContactModel contact) async {
-    Database db = await this.database;
+    Database db = await database;
     var result = await db.update(contactTable, contact.toMap(),
         where: '$colId = ?', whereArgs: [contact.id]);
     return result;
@@ -78,7 +72,7 @@ class DataBaseHelper {
 
   //delete a contact object
   Future<int> deleteContact(int id) async {
-    Database db = await this.database;
+    Database db = await database;
     int result =
         await db.rawDelete('DELETE FROM $contactTable WHERE $colId = $id');
     // print(await db.query(contactTable));
@@ -87,7 +81,7 @@ class DataBaseHelper {
 
   //get number of contact objects
   Future<int> getCount() async {
-    Database db = await this.database;
+    Database db = await database;
     List<Map<String, dynamic>> x =
         await db.rawQuery('SELECT COUNT (*) from $contactTable');
     int result = Sqflite.firstIntValue(x)!;
