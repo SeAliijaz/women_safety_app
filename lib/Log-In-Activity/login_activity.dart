@@ -5,23 +5,25 @@ import 'package:women_safety_app/Initial-Screens/landing_screen.dart';
 import 'package:women_safety_app/Module-Widgets/bottom_nav_screen.dart';
 import 'package:women_safety_app/Widgets/Custom-Widgets/progress_indicator.dart';
 
-class LogInActivityScreen extends StatelessWidget {
-  LogInActivityScreen({Key? key}) : super(key: key);
-  Future<FirebaseApp> initilize = Firebase.initializeApp();
+class LogInActivityChecking extends StatelessWidget {
+  LogInActivityChecking({Key? key}) : super(key: key);
+  final Future<FirebaseApp> initializeApp = Firebase.initializeApp();
 
   @override
   Widget build(BuildContext context) {
+    ///Future Builder
     return FutureBuilder(
-      future: initilize,
-      builder: (BuildContext context, AsyncSnapshot snapshot) {
-        if (snapshot.hasError) {
+      future: initializeApp,
+      builder: (BuildContext context, AsyncSnapshot futureSnapshot) {
+        if (futureSnapshot.hasError) {
           return Scaffold(
             body: Center(
-              child: Text("${snapshot.error}"),
+              child: Text("${futureSnapshot.error}"),
             ),
           );
         }
-        if (snapshot.connectionState == ConnectionState.done) {
+        if (futureSnapshot.connectionState == ConnectionState.done) {
+          ///Stream Builder
           return StreamBuilder(
             stream: FirebaseAuth.instance.authStateChanges(),
             builder: (BuildContext context, AsyncSnapshot streamSnapshot) {
@@ -35,21 +37,17 @@ class LogInActivityScreen extends StatelessWidget {
               if (streamSnapshot.connectionState == ConnectionState.active) {
                 User? user = streamSnapshot.data;
                 if (user == null) {
-                  return LandingScren();
+                  return const LandingScren();
                 }
-
-/*
-else if (MyPrefferenc.getEmail() == user.email) {
-                  return GuardianHomeScreen();
-*/
-
+/*else if (MyPrefferenc.getEmail() == user.email) {return GuardianHomeScreen();*/
               } else {
-                return BottomNavScreen();
+                return const BottomNavScreen();
               }
               return Scaffold(
                 body: Center(
                   child: CustomProgressIndicator(
-                      title: "Checking Authentication..."),
+                    title: "Checking Authentication...".toUpperCase(),
+                  ),
                 ),
               );
             },
@@ -57,15 +55,8 @@ else if (MyPrefferenc.getEmail() == user.email) {
         }
         return Scaffold(
           body: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
-                Text(
-                  "INITIALIZATION...",
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                ),
-                CircularProgressIndicator(),
-              ],
+            child: CustomProgressIndicator(
+              title: "Initilization...".toUpperCase(),
             ),
           ),
         );

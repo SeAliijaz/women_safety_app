@@ -36,6 +36,8 @@ class MyApp extends StatelessWidget {
           Theme.of(context).textTheme,
         ),
       ),
+
+      // home: LogInActivityChecking(),
       home: FutureBuilder(
         future: MySharedPreferences.getUserType(),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
