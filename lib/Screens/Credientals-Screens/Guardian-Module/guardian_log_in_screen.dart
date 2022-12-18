@@ -124,7 +124,7 @@ class _GuardianLogInScreenState extends State<GuardianLogInScreen> {
                           image: DecorationImage(
                             fit: BoxFit.fitHeight,
                             image: CachedNetworkImageProvider(
-                                URLClass().guardianImage),
+                                URLClass.guardianImage),
                           ),
                         ),
                       ),

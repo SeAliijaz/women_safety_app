@@ -28,8 +28,7 @@ class ChatScreen extends StatelessWidget {
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       image: DecorationImage(
-                        image:
-                            CachedNetworkImageProvider(URLClass().profilePic),
+                        image: CachedNetworkImageProvider(URLClass.profilePic),
                       ),
                       border: Border.all(
                         color: const Color(0xff025f7f),
@@ -110,7 +109,7 @@ class ChatScreen extends StatelessWidget {
                                         shape: BoxShape.circle,
                                         image: DecorationImage(
                                           image: CachedNetworkImageProvider(
-                                              URLClass().profilePic),
+                                              URLClass.profilePic),
                                         ),
                                         border: Border.all(
                                           color: const Color(0xff025f7f),
@@ -172,8 +171,7 @@ class ChatScreen extends StatelessWidget {
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       image: DecorationImage(
-                        image:
-                            CachedNetworkImageProvider(URLClass().profilePic),
+                        image: CachedNetworkImageProvider(URLClass.profilePic),
                       ),
                       border: Border.all(
                         color: const Color(0xff025f7f),

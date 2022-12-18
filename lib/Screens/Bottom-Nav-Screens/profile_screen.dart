@@ -56,7 +56,7 @@ class ProfileScreen extends StatelessWidget {
                     radius: 90,
                     backgroundColor: Colors.grey[500],
                     backgroundImage:
-                        CachedNetworkImageProvider(URLClass().profilePic),
+                        CachedNetworkImageProvider(URLClass.profilePic),
                     child: Align(
                       alignment: Alignment.bottomRight,
                       child: Container(

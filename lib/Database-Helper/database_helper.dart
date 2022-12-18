@@ -2,6 +2,7 @@ import 'package:sqflite/sqflite.dart';
 import 'package:women_safety_app/Models/contacts_model.dart';
 
 class DataBaseHelper {
+  // --> Declaration
   String contactTable = 'contact_table';
   String colId = 'id';
   String colContactName = 'name';
@@ -29,6 +30,7 @@ class DataBaseHelper {
     return _database!;
   }
 
+  //initializeDatabase
   Future<Database> initializeDatabase() async {
     String directoryPath = await getDatabasesPath();
     String dbLocation = '${directoryPath}contact.db';
@@ -38,6 +40,7 @@ class DataBaseHelper {
     return contactDatabase;
   }
 
+  //_createDbTable
   void _createDbTable(Database db, int newVersion) async {
     await db.execute(
         'CREATE TABLE $contactTable($colId INTEGER PRIMARY KEY AUTOINCREMENT, $colContactName TEXT, $colContactNumber TEXT)');
@@ -90,10 +93,10 @@ class DataBaseHelper {
 
   // Get the 'Map List' [ List<Map> ] and convert it to 'Contact List' [ List<Contact> ]
   Future<List<ContactModel>> getContactList() async {
-    var contactMapList =
-        await getContactMapList(); // Get 'Map List' from database
-    int count =
-        contactMapList.length; // Count the number of map entries in db table
+    // Get 'Map List' from database
+    var contactMapList = await getContactMapList();
+    // Count the number of map entries in db table
+    int count = contactMapList.length;
 
     List<ContactModel> contactList = <ContactModel>[];
     // For loop to create a 'Contact List' from a 'Map List'

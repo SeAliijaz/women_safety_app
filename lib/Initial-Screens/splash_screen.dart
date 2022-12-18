@@ -48,7 +48,7 @@ class _SplashScreenState extends State<SplashScreen> {
                     image: DecorationImage(
                       fit: BoxFit.fitHeight,
                       image: CachedNetworkImageProvider(
-                          URLClass().womenProtectionImg),
+                          URLClass.womenProtectionImg),
                     ),
                   ),
                 ),

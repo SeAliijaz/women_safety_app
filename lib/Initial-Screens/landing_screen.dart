@@ -22,7 +22,7 @@ class _LandingScrenState extends State<LandingScren> {
         decoration: BoxDecoration(
           image: DecorationImage(
             fit: BoxFit.fill,
-            image: CachedNetworkImageProvider(URLClass().landingScreenBg),
+            image: CachedNetworkImageProvider(URLClass.landingScreenBg),
           ),
         ),
         child: Padding(
@@ -47,6 +47,8 @@ class _LandingScrenState extends State<LandingScren> {
                   ),
                 ),
               ),
+
+              ///IMAGE
               Container(
                 height: MediaQuerySize(context).height * 0.2,
                 width: MediaQuerySize(context).width,
@@ -59,12 +61,15 @@ class _LandingScrenState extends State<LandingScren> {
                   image: DecorationImage(
                     fit: BoxFit.fitHeight,
                     image: CachedNetworkImageProvider(
-                      URLClass().womenProtectionImg,
+                      URLClass.womenProtectionImg,
                     ),
                   ),
                 ),
               ),
               const SizedBox(height: 20),
+
+              ///Custom Buttons
+              ///LogIn Screen Button
               SizedBox(
                 height: MediaQuerySize(context).height * 0.5,
                 width: MediaQuerySize(context).width,

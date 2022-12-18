@@ -79,8 +79,8 @@ class _AdminLogInScreenState extends State<AdminLogInScreen> {
                           ),
                           image: DecorationImage(
                             fit: BoxFit.fitHeight,
-                            image: CachedNetworkImageProvider(
-                                URLClass().adminImage),
+                            image:
+                                CachedNetworkImageProvider(URLClass.adminImage),
                           ),
                         ),
                       ),
