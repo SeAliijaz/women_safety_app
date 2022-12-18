@@ -69,8 +69,8 @@ class ProfileScreen extends StatelessWidget {
                         ),
                         child: IconButton(
                           onPressed: () {
-                            ShowMessages()
-                                .message("feature will be added soon!");
+                            ShowMessage.flutterToastMsg(
+                                "feature will be added soon!");
                           },
                           icon: Icon(
                             Icons.camera_alt,
@@ -92,7 +92,7 @@ class ProfileScreen extends StatelessWidget {
                     subTitleText: "Muhammad Ali",
                     trailingIcon: Icons.edit,
                     onPressed: () {
-                      ShowMessages().message("Feature will be added soon");
+                      ShowMessage.flutterToastMsg("Feature will be added soon");
                     },
                   ),
                   listTile(
@@ -101,7 +101,7 @@ class ProfileScreen extends StatelessWidget {
                     subTitleText: "Ali@gmail.com",
                     trailingIcon: Icons.edit,
                     onPressed: () {
-                      ShowMessages().message("Feature will be added soon");
+                      ShowMessage.flutterToastMsg("Feature will be added soon");
                     },
                   ),
                   listTile(
@@ -110,7 +110,7 @@ class ProfileScreen extends StatelessWidget {
                     subTitleText: "0309-4991850",
                     trailingIcon: Icons.edit,
                     onPressed: () {
-                      ShowMessages().message("Feature will be added soon");
+                      ShowMessage.flutterToastMsg("Feature will be added soon");
                     },
                   ),
                   listTile(
@@ -119,7 +119,7 @@ class ProfileScreen extends StatelessWidget {
                     subTitleText: "As a UserType",
                     trailingIcon: Icons.arrow_forward_ios,
                     onPressed: () {
-                      ShowMessages().message("Feature will be added soon");
+                      ShowMessage.flutterToastMsg("Feature will be added soon");
                     },
                   ),
 
@@ -144,7 +144,7 @@ class ProfileScreen extends StatelessWidget {
                       ),
                     ),
                     onPressed: () {
-                      ShowMessages().message("Feature will be added soon");
+                      ShowMessage.flutterToastMsg("Feature will be added soon");
                     },
                   ),
                 ],

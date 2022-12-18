@@ -43,9 +43,9 @@ class _ContactsScreenState extends State<ContactsScreen> {
 
   handleInvalidPermissions(PermissionStatus permissionStatus) {
     if (permissionStatus == PermissionStatus.denied) {
-      return ShowMessages().message('Access denied by user');
+      ShowMessage.flutterToastMsg('Access denied by user');
     } else if (permissionStatus == PermissionStatus.permanentlyDenied) {
-      return ShowMessages().message("Contacts does'nt exist");
+      ShowMessage.flutterToastMsg("Contacts does'nt exist");
     } else {
       ///Empty for now
     }
@@ -159,7 +159,7 @@ class _ContactsScreenState extends State<ContactsScreen> {
                                       ContactModel(phoneNum, name),
                                     );
                                   } else {
-                                    ShowMessages().message(
+                                    ShowMessage.flutterToastMsg(
                                         "phone number of this contact does not exists");
                                   }
                                 },
@@ -180,10 +180,10 @@ class _ContactsScreenState extends State<ContactsScreen> {
     int result = await _dataBaseHelper.insertContact(contact);
 
     if (result != 0) {
-      ShowMessages()
-          .message("Contact ${contact.name} is Added to Trusted Contacts");
+      ShowMessage.flutterToastMsg(
+          "Contact ${contact.name} is Added to Trusted Contacts");
     } else {
-      ShowMessages().message("Failed To Add ${contact.name} Contact");
+      ShowMessage.flutterToastMsg("Failed To Add ${contact.name} Contact");
     }
     Navigator.of(context).pop(true);
   }

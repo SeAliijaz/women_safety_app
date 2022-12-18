@@ -75,22 +75,21 @@ class _LandingScrenState extends State<LandingScren> {
                       title: "Login As User",
                       isLoginButton: true,
                       onPressed: () {
-                        RoutesAndIndicators().goTo(context, UserLogInScreen());
+                        Routes.goTo(context, UserLogInScreen());
                       },
                     ),
                     CustomButton(
                       title: "Login As Gurdian",
                       isLoginButton: true,
                       onPressed: () {
-                        RoutesAndIndicators()
-                            .goTo(context, GuardianLogInScreen());
+                        Routes.goTo(context, GuardianLogInScreen());
                       },
                     ),
                     CustomButton(
                       title: "Login As Admin",
                       isLoginButton: true,
                       onPressed: () {
-                        RoutesAndIndicators().goTo(context, AdminLogInScreen());
+                        Routes.goTo(context, AdminLogInScreen());
                       },
                     ),
                   ],

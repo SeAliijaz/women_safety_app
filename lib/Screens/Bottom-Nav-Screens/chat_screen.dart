@@ -19,7 +19,7 @@ class ChatScreen extends StatelessWidget {
                   IconButton(
                     icon: const Icon(Icons.arrow_back),
                     onPressed: () {
-                      ShowMessages().message("Will go back");
+                      ShowMessage.flutterToastMsg("Will go back");
                     },
                   ),
                   Container(
@@ -63,7 +63,7 @@ class ChatScreen extends StatelessWidget {
                       color: Color(0xff025f7f),
                     ),
                     onPressed: () {
-                      ShowMessages().message("Calling");
+                      ShowMessage.flutterToastMsg("Calling");
                     },
                   ),
                   IconButton(
@@ -72,7 +72,7 @@ class ChatScreen extends StatelessWidget {
                       color: Color(0xff025f7f),
                     ),
                     onPressed: () {
-                      ShowMessages().message("User Info");
+                      ShowMessage.flutterToastMsg("User Info");
                     },
                   ),
                 ],
@@ -194,7 +194,7 @@ class ChatScreen extends StatelessWidget {
                             icon:
                                 const Icon(Icons.mic, color: Color(0xff025f7f)),
                             onPressed: () =>
-                                ShowMessages().message('Mic Pressed'),
+                                ShowMessage.flutterToastMsg('Mic Pressed'),
                           ),
                           contentPadding:
                               const EdgeInsets.fromLTRB(12.0, 8.0, 8.0, 12.0),
@@ -224,7 +224,7 @@ class ChatScreen extends StatelessWidget {
                       color: Color(0xff025f7f),
                     ),
                     onTap: () {
-                      ShowMessages().message("msg sent");
+                      ShowMessage.flutterToastMsg("msg sent");
                     },
                   ),
                   const SizedBox(width: 5.0),
@@ -258,7 +258,8 @@ Future<void> showBottomSheetOptions(BuildContext context) {
               mainAxisSize: MainAxisSize.min,
               children: [
                 MaterialButton(
-                  onPressed: () => ShowMessages().message("Will update later."),
+                  onPressed: () =>
+                      ShowMessage.flutterToastMsg("Will update later."),
                   color: const Color(0xff025f7f),
                   textColor: Colors.white,
                   child: const Icon(
@@ -282,7 +283,8 @@ Future<void> showBottomSheetOptions(BuildContext context) {
               mainAxisSize: MainAxisSize.min,
               children: [
                 MaterialButton(
-                  onPressed: () => ShowMessages().message("Will update later."),
+                  onPressed: () =>
+                      ShowMessage.flutterToastMsg("Will update later."),
                   color: const Color(0xff025f7f),
                   textColor: Colors.white,
                   child: const Icon(
@@ -306,7 +308,8 @@ Future<void> showBottomSheetOptions(BuildContext context) {
               mainAxisSize: MainAxisSize.min,
               children: [
                 MaterialButton(
-                  onPressed: () => ShowMessages().message("Will update later."),
+                  onPressed: () =>
+                      ShowMessage.flutterToastMsg("Will update later."),
                   color: const Color(0xff025f7f),
                   textColor: Colors.white,
                   child: const Icon(

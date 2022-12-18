@@ -25,16 +25,16 @@ class CarouselSliderWidget extends StatelessWidget {
               onTap: (() {
                 ///Navigation to WebView
                 if (index == 0) {
-                  RoutesAndIndicators().goTo(context,
+                  Routes.goTo(context,
                       WebViewWidget(url: WebViewURLClass().webViewURL0));
                 } else if (index == 1) {
-                  RoutesAndIndicators().goTo(context,
+                  Routes.goTo(context,
                       WebViewWidget(url: WebViewURLClass().webViewURL1));
                 } else if (index == 2) {
-                  RoutesAndIndicators().goTo(context,
+                  Routes.goTo(context,
                       WebViewWidget(url: WebViewURLClass().webViewURL2));
                 } else {
-                  RoutesAndIndicators().goTo(context,
+                  Routes.goTo(context,
                       WebViewWidget(url: WebViewURLClass().webViewURL3));
                 }
               }),

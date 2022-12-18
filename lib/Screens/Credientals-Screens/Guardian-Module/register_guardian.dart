@@ -27,9 +27,10 @@ class _RegisterGuardianState extends State<RegisterGuardian> {
   _onFormSubmit() async {
     formKey.currentState!.save();
     if (formData['password'] != formData['rpassword']) {
-      ShowMessages().message('password and retype password should be equal');
+      ShowMessage.flutterToastMsg(
+          'password and retype password should be equal');
     } else {
-      RoutesAndIndicators().customProgressIndicator(context);
+      CustomProgessIndicator.indicator(context);
       try {
         setState(() {
           isLoading = true;
@@ -53,30 +54,31 @@ class _RegisterGuardianState extends State<RegisterGuardian> {
           );
           final jsonData = user.toJson();
           await db.set(jsonData).whenComplete(() {
-            RoutesAndIndicators().goTo(context, UserLogInScreen());
+            Routes.goTo(context, UserLogInScreen());
             setState(() {
               isLoading = false;
             });
           });
         }
       } on FirebaseAuthException catch (e) {
-        ShowMessages().message(e.toString());
+        ShowMessage.flutterToastMsg(e.toString());
         setState(() {
           isLoading = false;
         });
         if (e.code == 'weak-password') {
           debugPrint('The password provided is too weak.');
-          ShowMessages().message('The password provided is too weak.');
+          ShowMessage.flutterToastMsg('The password provided is too weak.');
         } else if (e.code == 'email-already-in-use') {
           debugPrint('The account already exists for that email.');
-          ShowMessages().message('The account already exists for that email.');
+          ShowMessage.flutterToastMsg(
+              'The account already exists for that email.');
         }
       } catch (e) {
         setState(() {
           isLoading = false;
         });
         debugPrint(e.toString());
-        ShowMessages().message(e.toString());
+        ShowMessage.flutterToastMsg(e.toString());
       }
     }
     debugPrint(formData['email'].toString());
@@ -92,7 +94,7 @@ class _RegisterGuardianState extends State<RegisterGuardian> {
           child: Stack(
             children: [
               isLoading
-                  ? RoutesAndIndicators().customProgressIndicator(context)
+                  ? CustomProgessIndicator.indicator(context)
                   : SingleChildScrollView(
                       child: Column(
                         children: [
@@ -255,8 +257,7 @@ class _RegisterGuardianState extends State<RegisterGuardian> {
                               title: 'Login with your account',
                               isLoginButton: false,
                               onPressed: () {
-                                RoutesAndIndicators()
-                                    .goTo(context, UserLogInScreen());
+                                Routes.goTo(context, UserLogInScreen());
                               }),
                         ],
                       ),

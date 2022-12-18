@@ -52,7 +52,7 @@ class _LocationBottomSheetState extends State<LocationBottomSheet> {
 
     serviceEnabled = await Geolocator.isLocationServiceEnabled();
     if (!serviceEnabled) {
-      ShowMessages().message(
+      ShowMessage.flutterToastMsg(
           "Location services are disabled. Please enable the services");
       return false;
     }
@@ -60,12 +60,12 @@ class _LocationBottomSheetState extends State<LocationBottomSheet> {
     if (permission == LocationPermission.denied) {
       permission = await Geolocator.requestPermission();
       if (permission == LocationPermission.denied) {
-        ShowMessages().message("Location permissions are denied");
+        ShowMessage.flutterToastMsg("Location permissions are denied");
         return false;
       }
     }
     if (permission == LocationPermission.deniedForever) {
-      ShowMessages().message(
+      ShowMessage.flutterToastMsg(
           "Location permissions are permanently denied, we cannot request permissions.");
     }
     return true;

@@ -75,8 +75,7 @@ class _RatingAppScreenState extends State<RatingAppScreen> {
                         snapshot.connectionState == ConnectionState.none ||
                         snapshot.connectionState == ConnectionState.waiting) {
                       return Center(
-                          child: RoutesAndIndicators()
-                              .customProgressIndicator(context));
+                          child: CustomProgessIndicator.indicator(context));
                     }
                     if (snapshot.data!.docs.isEmpty) {
                       return Center(

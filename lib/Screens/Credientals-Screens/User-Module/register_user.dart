@@ -27,9 +27,10 @@ class _RegisterUserState extends State<RegisterUser> {
   _onFormSubmit() async {
     formKey.currentState!.save();
     if (formData['password'] != formData['rpassword']) {
-      ShowMessages().message('password and retype password should be equal');
+      ShowMessage.flutterToastMsg(
+          'password and retype password should be equal');
     } else {
-      RoutesAndIndicators().customProgressIndicator(context);
+      CustomProgessIndicator.indicator(context);
       try {
         setState(() {
           isLoading = true;
@@ -56,7 +57,7 @@ class _RegisterUserState extends State<RegisterUser> {
           );
           final jsonData = user.toJson();
           await db.set(jsonData).whenComplete(() {
-            RoutesAndIndicators().goTo(context, UserLogInScreen());
+            Routes.goTo(context, UserLogInScreen());
             setState(() {
               isLoading = false;
             });
@@ -65,10 +66,11 @@ class _RegisterUserState extends State<RegisterUser> {
       } on FirebaseAuthException catch (e) {
         if (e.code == 'weak-password') {
           print('The password provided is too weak.');
-          ShowMessages().message('The password provided is too weak.');
+          ShowMessage.flutterToastMsg('The password provided is too weak.');
         } else if (e.code == 'email-already-in-use') {
           print('The account already exists for that email.');
-          ShowMessages().message('The account already exists for that email.');
+          ShowMessage.flutterToastMsg(
+              'The account already exists for that email.');
         }
         setState(() {
           isLoading = false;
@@ -78,7 +80,7 @@ class _RegisterUserState extends State<RegisterUser> {
         setState(() {
           isLoading = false;
         });
-        ShowMessages().message(e.toString());
+        ShowMessage.flutterToastMsg(e.toString());
       }
     }
     print(formData['email']);
@@ -94,7 +96,7 @@ class _RegisterUserState extends State<RegisterUser> {
           child: Stack(
             children: [
               isLoading
-                  ? RoutesAndIndicators().customProgressIndicator(context)
+                  ? CustomProgessIndicator.indicator(context)
                   : SingleChildScrollView(
                       child: Column(
                         children: [
@@ -258,8 +260,7 @@ class _RegisterUserState extends State<RegisterUser> {
                           CustomButton(
                               title: 'Login with your account',
                               onPressed: () {
-                                RoutesAndIndicators()
-                                    .goTo(context, UserLogInScreen());
+                                Routes.goTo(context, UserLogInScreen());
                               }),
                         ],
                       ),

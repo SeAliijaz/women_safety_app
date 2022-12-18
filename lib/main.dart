@@ -49,27 +49,9 @@ class MyApp extends StatelessWidget {
           if (snapshot.data == "parent") {
             return const GuardianHomeScreen();
           }
-          return RoutesAndIndicators().customProgressIndicator(context);
+          return CustomProgessIndicator.indicator(context);
         },
       ),
-
-      /*
-FutureBuilder(
-        future: MySharedPreferences.getUserType(),
-        builder: (BuildContext context, AsyncSnapshot snapshot) {
-          if (snapshot.data == "") {
-            return ChildLogInScreen();
-          }
-          if (snapshot.data == "child") {
-            return BottomNavScreen();
-          }
-          if (snapshot.data == "parent") {
-            return GuardianHomeScreen();
-          }
-          return customProgressIndicator(context);
-        },
-      ),
-      */
     );
   }
 }

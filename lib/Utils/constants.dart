@@ -64,38 +64,26 @@ class URLClass {
 }
 
 ///Show Messages
-class ShowMessages {
+class ShowMessage {
   ///FlutterToast
-  void message(String msg) {
+  static flutterToastMsg(String msg) {
     Fluttertoast.showToast(msg: msg);
-  }
-
-  ///Custom DialougeBox
-  customDialogBox(BuildContext context, String text) {
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: Text(
-          text,
-          textAlign: TextAlign.center,
-        ),
-      ),
-    );
   }
 }
 
-///Routes And Indicator
-class RoutesAndIndicators {
+class Routes {
   ///Custom Navigator
-  goTo(BuildContext context, Widget nextScreen) {
+  static goTo(BuildContext context, Widget nextScreen) {
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => nextScreen),
     );
   }
+}
 
+class CustomProgessIndicator {
   ///Custom ProgressIndicator
-  Widget customProgressIndicator(BuildContext context) {
+  static Widget indicator(BuildContext context) {
     return Center(
         child: CircularProgressIndicator(
       backgroundColor: AppColors.primaryColor,

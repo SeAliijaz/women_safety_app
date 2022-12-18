@@ -46,10 +46,10 @@ class _UserLogInScreenState extends State<UserLogInScreen> {
           if (value['type'] == 'parent') {
             debugPrint(value['type']);
             MySharedPreferences.saveUserType('parent');
-            RoutesAndIndicators().goTo(context, GuardianHomeScreen());
+            Routes.goTo(context, GuardianHomeScreen());
           } else {
             MySharedPreferences.saveUserType('child');
-            RoutesAndIndicators().goTo(context, HomeScreen());
+            Routes.goTo(context, HomeScreen());
           }
         });
       }
@@ -58,10 +58,10 @@ class _UserLogInScreenState extends State<UserLogInScreen> {
         isLoading = false;
       });
       if (e.code == 'user-not-found') {
-        ShowMessages().message('No user found for that email.');
+        ShowMessage.flutterToastMsg('No user found for that email.');
         debugPrint('No user found for that email.');
       } else if (e.code == 'wrong-password') {
-        ShowMessages().message('Wrong password provided for that user.');
+        ShowMessage.flutterToastMsg('Wrong password provided for that user.');
         debugPrint('Wrong password provided for that user.');
       }
     }
@@ -178,8 +178,7 @@ class _UserLogInScreenState extends State<UserLogInScreen> {
                             child: CustomTextButton(
                               title: "Register as User",
                               onPressed: () {
-                                RoutesAndIndicators()
-                                    .goTo(context, RegisterUser());
+                                Routes.goTo(context, RegisterUser());
                               },
                             ),
                           ),
@@ -191,8 +190,7 @@ class _UserLogInScreenState extends State<UserLogInScreen> {
                             child: CustomTextButton(
                               title: "Register as Guardian",
                               onPressed: () {
-                                RoutesAndIndicators()
-                                    .goTo(context, RegisterGuardian());
+                                Routes.goTo(context, RegisterGuardian());
                               },
                             ),
                           ),

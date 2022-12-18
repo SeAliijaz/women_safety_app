@@ -39,8 +39,7 @@ class GuardianHomeScreen extends StatelessWidget {
                       AsyncSnapshot<QuerySnapshot> snapshot) {
                     if (!snapshot.hasData) {
                       return Center(
-                          child: RoutesAndIndicators()
-                              .customProgressIndicator(context));
+                          child: CustomProgessIndicator.indicator(context));
                     }
                     return ListView.builder(
                       itemCount: snapshot.data!.docs.length,
