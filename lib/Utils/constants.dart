@@ -84,7 +84,7 @@ class Routes {
 class CustomProgessIndicator {
   ///Custom ProgressIndicator
   static Widget indicator(BuildContext context) {
-    return Center(
+    return const Center(
         child: CircularProgressIndicator(
       backgroundColor: AppColors.primaryColor,
       color: Colors.red,

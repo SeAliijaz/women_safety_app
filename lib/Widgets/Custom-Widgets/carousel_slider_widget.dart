@@ -14,7 +14,7 @@ class CarouselSliderWidget extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10),
       child: CarouselSlider(
-        items: List.generate(Quotes().carouselImages.length, (index) {
+        items: List.generate(Quotes.carouselImages.length, (index) {
           return Card(
             elevation: 5,
             shadowColor: Colors.grey[600],
@@ -44,7 +44,7 @@ class CarouselSliderWidget extends StatelessWidget {
                   borderRadius: BorderRadius.circular(10),
                   image: DecorationImage(
                     image: NetworkImage(
-                      Quotes().carouselImages[index],
+                      Quotes.carouselImages[index],
                     ),
                     fit: BoxFit.cover,
                   ),
@@ -58,7 +58,7 @@ class CarouselSliderWidget extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
-                        Quotes().articleTexts[index],
+                        Quotes.articleTexts[index],
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           color: Colors.white,
