@@ -46,10 +46,10 @@ class _UserLogInScreenState extends State<UserLogInScreen> {
           if (value['type'] == 'parent') {
             debugPrint(value['type']);
             MySharedPreferences.saveUserType('parent');
-            Routes.goTo(context, GuardianHomeScreen());
+            Routes.goToPage(context, GuardianHomeScreen());
           } else {
             MySharedPreferences.saveUserType('child');
-            Routes.goTo(context, HomeScreen());
+            Routes.goToPage(context, HomeScreen());
           }
         });
       }
@@ -178,7 +178,7 @@ class _UserLogInScreenState extends State<UserLogInScreen> {
                             child: CustomTextButton(
                               title: "Register as User",
                               onPressed: () {
-                                Routes.goTo(context, RegisterUser());
+                                Routes.goToPage(context, RegisterUser());
                               },
                             ),
                           ),
@@ -190,7 +190,7 @@ class _UserLogInScreenState extends State<UserLogInScreen> {
                             child: CustomTextButton(
                               title: "Register as Guardian",
                               onPressed: () {
-                                Routes.goTo(context, RegisterGuardian());
+                                Routes.goToPage(context, RegisterGuardian());
                               },
                             ),
                           ),

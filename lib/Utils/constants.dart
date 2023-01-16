@@ -73,7 +73,7 @@ class ShowMessage {
 
 class Routes {
   ///Custom Navigator
-  static goTo(BuildContext context, Widget nextScreen) {
+  static goToPage(BuildContext context, Widget nextScreen) {
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => nextScreen),

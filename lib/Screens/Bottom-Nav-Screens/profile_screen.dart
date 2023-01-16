@@ -116,7 +116,7 @@ class ProfileScreen extends StatelessWidget {
                   listTile(
                     leadingIcon: Icons.logout,
                     titleText: "Logout",
-                    subTitleText: "As a UserType",
+                    subTitleText: "Dummy Text",
                     trailingIcon: Icons.arrow_forward_ios,
                     onPressed: () {
                       ShowMessage.flutterToastMsg("Feature will be added soon");

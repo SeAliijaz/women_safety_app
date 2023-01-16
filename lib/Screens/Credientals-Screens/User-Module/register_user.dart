@@ -57,7 +57,7 @@ class _RegisterUserState extends State<RegisterUser> {
           );
           final jsonData = user.toJson();
           await db.set(jsonData).whenComplete(() {
-            Routes.goTo(context, UserLogInScreen());
+            Routes.goToPage(context, UserLogInScreen());
             setState(() {
               isLoading = false;
             });
@@ -260,7 +260,7 @@ class _RegisterUserState extends State<RegisterUser> {
                           CustomButton(
                               title: 'Login with your account',
                               onPressed: () {
-                                Routes.goTo(context, UserLogInScreen());
+                                Routes.goToPage(context, UserLogInScreen());
                               }),
                         ],
                       ),

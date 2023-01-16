@@ -65,7 +65,7 @@ class _GuardianLogInScreenState extends State<GuardianLogInScreen> {
               ecoDialogue('user may have been deleted');
             } else {
               // MySharedPreferences.saveEmail(emailC.text);
-              Routes.goTo(context, GuardianHomeScreen());
+              Routes.goToPage(context, GuardianHomeScreen());
             }
           });
 
@@ -196,7 +196,7 @@ class _GuardianLogInScreenState extends State<GuardianLogInScreen> {
               CustomButton(
                 title: "CREATE NEW ACCOUNT",
                 onPressed: () {
-                  Routes.goTo(context, RegisterGuardian());
+                  Routes.goToPage(context, RegisterGuardian());
                 },
                 isLoginButton: false,
               ),

@@ -90,7 +90,46 @@ class _AddTrustedContactsState extends State<AddTrustedContacts> {
                   direction: DismissDirection.endToStart,
                   key: UniqueKey(),
                   onDismissed: ((direction) {
-                    deleteContact(contactList![index]);
+                    showDialog(
+                        context: context,
+                        builder: (_) {
+                          return AlertDialog(
+                            title: Text("Are You Sure You Want to Delete?"),
+                            content: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Text(
+                                    "You want to delete this ${contactList![index].name} Contact?"),
+                              ],
+                            ),
+                            actions: [
+                              MaterialButton(
+                                color: Colors.red,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(0.0),
+                                ),
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                                child: Text(
+                                  "No",
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                              ),
+                              MaterialButton(
+                                color: Colors.green,
+                                onPressed: () {
+                                  deleteContact(contactList![index]);
+                                  Navigator.pop(context);
+                                },
+                                child: Text(
+                                  "Yes",
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                              ),
+                            ],
+                          );
+                        });
                   }),
                   child: Card(
                     elevation: 5,
@@ -121,40 +160,3 @@ class _AddTrustedContactsState extends State<AddTrustedContacts> {
     );
   }
 }
-  /*showDialog(
-    context: context,
-    builder: ((context) {
-    return AlertDialog(
-    title: Text("Are You Sure"),
-    content: Text(
-    "You want to delete contact?"),
-    actions: [
-    MaterialButton(
-    color: AppColors.primaryColor,
-    onPressed: () {
-    Navigator.of(context).pop();
-    },
-    child: Text(
-    "No",
-    style: TextStyle(
-    color: Colors.white,
-    ),
-    ),
-    ),
-    MaterialButton(
-    color: AppColors.primaryColor,
-    onPressed: () {
-    deleteContact(
-    contactList![index]);
-    Navigator.pop(context);
-    },
-    child: Text(
-    "Yes",
-    style: TextStyle(
-    color: Colors.white,
-    ),
-    ),
-    ),
-    ],
-    );
-    }));*/

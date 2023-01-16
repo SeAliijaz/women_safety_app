@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:women_safety_app/Screens/Bottom-Nav-Screens/add_contacts_screen.dart';
+import 'package:women_safety_app/Screens/Bottom-Nav-Screens/add_trusted_contacts_screen.dart';
 import 'package:women_safety_app/Screens/Bottom-Nav-Screens/chat_screen.dart';
 import 'package:women_safety_app/Screens/Bottom-Nav-Screens/profile_screen.dart';
 import 'package:women_safety_app/Screens/Bottom-Nav-Screens/rating_app_screen.dart';

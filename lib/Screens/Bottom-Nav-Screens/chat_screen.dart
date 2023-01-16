@@ -236,6 +236,7 @@ class ChatScreen extends StatelessWidget {
   }
 }
 
+///Bottom sheet
 Future<void> showBottomSheetOptions(BuildContext context) {
   return showModalBottomSheet(
     shape: const RoundedRectangleBorder(

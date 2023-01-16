@@ -54,7 +54,7 @@ class _RegisterGuardianState extends State<RegisterGuardian> {
           );
           final jsonData = user.toJson();
           await db.set(jsonData).whenComplete(() {
-            Routes.goTo(context, UserLogInScreen());
+            Routes.goToPage(context, UserLogInScreen());
             setState(() {
               isLoading = false;
             });
@@ -257,7 +257,7 @@ class _RegisterGuardianState extends State<RegisterGuardian> {
                               title: 'Login with your account',
                               isLoginButton: false,
                               onPressed: () {
-                                Routes.goTo(context, UserLogInScreen());
+                                Routes.goToPage(context, UserLogInScreen());
                               }),
                         ],
                       ),
