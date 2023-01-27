@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:women_safety_app/Module-Widgets/bottom_nav_screen.dart';
 import 'package:women_safety_app/Screens/Credientals-Screens/User-Module/register_user.dart';
 import 'package:women_safety_app/Screens/Credientals-Screens/Guardian-Module/guardian_home_screen.dart';
 import 'package:women_safety_app/Screens/Credientals-Screens/Guardian-Module/register_guardian.dart';
@@ -49,7 +50,7 @@ class _UserLogInScreenState extends State<UserLogInScreen> {
             Routes.goToPage(context, GuardianHomeScreen());
           } else {
             MySharedPreferences.saveUserType('child');
-            Routes.goToPage(context, HomeScreen());
+            Routes.goToPage(context, BottomNavScreen());
           }
         });
       }

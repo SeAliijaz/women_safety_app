@@ -29,6 +29,7 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  background_sms: ^0.0.4
   cached_network_image: ^3.2.3
   carousel_slider: ^4.1.1
   cloud_firestore: ^4.0.5

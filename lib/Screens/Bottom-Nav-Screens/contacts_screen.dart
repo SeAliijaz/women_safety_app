@@ -11,7 +11,9 @@ class ContactsScreen extends StatefulWidget {
   const ContactsScreen({Key? key}) : super(key: key);
 
   @override
-  State<ContactsScreen> createState() => _ContactsScreenState();
+  State<ContactsScreen> createState() {
+    return _ContactsScreenState();
+  }
 }
 
 class _ContactsScreenState extends State<ContactsScreen> {
@@ -47,7 +49,7 @@ class _ContactsScreenState extends State<ContactsScreen> {
     } else if (permissionStatus == PermissionStatus.permanentlyDenied) {
       ShowMessage.flutterToastMsg("Contacts does'nt exist");
     } else {
-      ///Empty for now
+      ///Code here
     }
   }
 
@@ -113,7 +115,7 @@ class _ContactsScreenState extends State<ContactsScreen> {
       ),
       body: contacts.length == 0
           ? Center(
-              child: CustomProgressIndicator(title: "Loading your Contacts..."),
+              child: CustomProgressIndicator(title: "Loading Contacts..."),
             )
           : Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
@@ -160,7 +162,8 @@ class _ContactsScreenState extends State<ContactsScreen> {
                                     );
                                   } else {
                                     ShowMessage.flutterToastMsg(
-                                        "phone number of this contact does not exists");
+                                        "phone number of this contact does not exists"
+                                            .toUpperCase());
                                   }
                                 },
                               );
@@ -181,9 +184,9 @@ class _ContactsScreenState extends State<ContactsScreen> {
 
     if (result != 0) {
       ShowMessage.flutterToastMsg(
-          "Contact ${contact.name} is Added to Trusted Contacts");
+          "${contact.name} is Added to Trusted Contacts");
     } else {
-      ShowMessage.flutterToastMsg("Failed To Add ${contact.name} Contact");
+      ShowMessage.flutterToastMsg("Failed To Add ${contact.name}");
     }
     Navigator.of(context).pop(true);
   }

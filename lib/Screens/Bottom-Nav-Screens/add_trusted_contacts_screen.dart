@@ -37,7 +37,7 @@ class _AddTrustedContactsState extends State<AddTrustedContacts> {
     int result = await databasehelper.deleteContact(contact.id);
     if (result != 0) {
       ShowMessage.flutterToastMsg(
-          "Contact ${contact.name} is Removed from Trusted Contacts");
+          "${contact.name} is Removed from Trusted Contacts");
       showList();
     }
   }
@@ -99,7 +99,7 @@ class _AddTrustedContactsState extends State<AddTrustedContacts> {
                               mainAxisSize: MainAxisSize.min,
                               children: [
                                 Text(
-                                    "You want to delete this ${contactList![index].name} Contact?"),
+                                    "You want to delete this ${contactList![index].name}?"),
                               ],
                             ),
                             actions: [

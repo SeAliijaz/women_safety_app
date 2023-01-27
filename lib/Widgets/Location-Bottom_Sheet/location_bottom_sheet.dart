@@ -1,7 +1,12 @@
+import 'package:background_sms/background_sms.dart';
 import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:permission_handler/permission_handler.dart';
+import 'package:women_safety_app/Database-Helper/database_helper.dart';
+import 'package:women_safety_app/Models/contacts_model.dart';
 import 'package:women_safety_app/Utils/constants.dart';
+import 'package:women_safety_app/Widgets/Custom-Buttons/custom_button.dart';
 
 class LocationBottomSheet extends StatefulWidget {
   const LocationBottomSheet({super.key});
@@ -11,6 +16,28 @@ class LocationBottomSheet extends StatefulWidget {
 }
 
 class _LocationBottomSheetState extends State<LocationBottomSheet> {
+  ///Get Permission
+  _getPermission() async => await [Permission.sms].request();
+
+  ///Permisison Granted
+  _isPermissionGranted() async => await [Permission.sms.status.isGranted];
+
+  ///send sms
+  _sendSMS(String phoneNumber, String message, {int? simSlot}) async {
+    await BackgroundSms.sendMessage(
+      phoneNumber: phoneNumber,
+      message: message,
+      simSlot: simSlot,
+    ).then((SmsStatus status) {
+      if (status == "sent") {
+        ShowMessage.flutterToastMsg("Message Sent");
+      } else {
+        ShowMessage.flutterToastMsg("Message Failed");
+      }
+    });
+  }
+
+  ///Bottom Sheet to send location
   showLocationBottomSheet(BuildContext context) {
     showModalBottomSheet(
       context: context,
@@ -27,14 +54,47 @@ class _LocationBottomSheetState extends State<LocationBottomSheet> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text("LAT: ${_currentPosition?.latitude ?? ""}"),
-                Text("LNG: ${_currentPosition?.longitude ?? ""}"),
-                Text("ADDRESS: ${_currentAddress ?? ""}"),
-                const SizedBox(height: 32),
-                ElevatedButton(
-                  onPressed: _getCurrentPosition,
-                  child: const Text("Get Current Location"),
-                )
+                Text(
+                  "SEND YOUR CUURENT LOCATION IMMEDIATELY TO YOU EMERGENCY CONTACTS",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      fontSize: 20, decoration: TextDecoration.underline),
+                ),
+                SizedBox(height: 10),
+                if (_currentPosition != null) Text(_currentAddress!),
+                CustomButton(
+                  title: "GET LOCATION",
+                  isLoginButton: true,
+                  onPressed: _getCurrentLocation,
+                ),
+                CustomButton(
+                  title: "Send Alert",
+                  isLoginButton: true,
+                  onPressed: () async {
+                    List<ContactModel> contactList =
+                        await DataBaseHelper().getContactList();
+                    String receipents = "";
+                    int iteration = 1;
+                    for (ContactModel contactModel in contactList) {
+                      receipents += contactModel.number;
+                      if (iteration != contactList.length) {
+                        receipents += "+";
+                        iteration++;
+                      }
+                    }
+                    String locationURL =
+                        "https://www.google.com/maps/search/?api=1&query=${_currentPosition!.latitude}%2C${_currentPosition!.longitude}. $_currentAddress";
+                    String messageBody = locationURL;
+                    if (await _isPermissionGranted()) {
+                      contactList.forEach((element) {
+                        _sendSMS(element.number,
+                            "I'm in Trouble Please Help My Location: $messageBody");
+                      });
+                    } else {
+                      ShowMessage.flutterToastMsg("something wrong");
+                    }
+                  },
+                ),
               ],
             ),
           ),
@@ -45,57 +105,53 @@ class _LocationBottomSheetState extends State<LocationBottomSheet> {
 
   String? _currentAddress;
   Position? _currentPosition;
+  LocationPermission? _locationPermission;
 
-  Future<bool> _handleLocationPermission() async {
-    bool serviceEnabled;
-    LocationPermission permission;
-
-    serviceEnabled = await Geolocator.isLocationServiceEnabled();
-    if (!serviceEnabled) {
-      ShowMessage.flutterToastMsg(
-          "Location services are disabled. Please enable the services");
-      return false;
-    }
-    permission = await Geolocator.checkPermission();
-    if (permission == LocationPermission.denied) {
-      permission = await Geolocator.requestPermission();
-      if (permission == LocationPermission.denied) {
-        ShowMessage.flutterToastMsg("Location permissions are denied");
-        return false;
+  ///Get Location
+  _getCurrentLocation() async {
+    _locationPermission = await Geolocator.checkPermission();
+    if (_locationPermission == LocationPermission.denied) {
+      _locationPermission = await Geolocator.requestPermission();
+      ShowMessage.flutterToastMsg("Location permissions are  denind");
+      if (_locationPermission == LocationPermission.deniedForever) {
+        ShowMessage.flutterToastMsg(
+            "Location permissions are permanently denind");
       }
     }
-    if (permission == LocationPermission.deniedForever) {
-      ShowMessage.flutterToastMsg(
-          "Location permissions are permanently denied, we cannot request permissions.");
-    }
-    return true;
-  }
-
-  Future<void> _getCurrentPosition() async {
-    final hasPermission = await _handleLocationPermission();
-
-    if (!hasPermission) return;
-    await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high)
+    Geolocator.getCurrentPosition(
+            desiredAccuracy: LocationAccuracy.high,
+            forceAndroidLocationManager: true)
         .then((Position position) {
-      setState(() => _currentPosition = position);
-      _getAddressFromLatLng(_currentPosition!);
+      setState(() {
+        _currentPosition = position;
+        print(_currentPosition!.latitude);
+        _getAddressFromLatLon();
+      });
     }).catchError((e) {
-      debugPrint(e);
+      ShowMessage.flutterToastMsg(e.toString());
     });
   }
 
-  Future<void> _getAddressFromLatLng(Position position) async {
-    await placemarkFromCoordinates(
-            _currentPosition!.latitude, _currentPosition!.longitude)
-        .then((List<Placemark> placemarks) {
+  _getAddressFromLatLon() async {
+    try {
+      List<Placemark> placemarks = await placemarkFromCoordinates(
+          _currentPosition!.latitude, _currentPosition!.longitude);
+
       Placemark place = placemarks[0];
       setState(() {
         _currentAddress =
-            '${place.street}, ${place.subLocality}, ${place.subAdministrativeArea}, ${place.postalCode}';
+            "${place.locality},${place.postalCode},${place.street},";
       });
-    }).catchError((e) {
-      debugPrint(e);
-    });
+    } catch (e) {
+      ShowMessage.flutterToastMsg(e.toString());
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _getPermission();
+    _getCurrentLocation();
   }
 
   @override

@@ -1,7 +1,6 @@
 import 'dart:math';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:women_safety_app/Initial-Screens/landing_screen.dart';
 import 'package:women_safety_app/Module-Widgets/emergency_card_widget.dart';
 import 'package:women_safety_app/Module-Widgets/live_safe_widget.dart';
 import 'package:women_safety_app/Utils/constants.dart';
@@ -44,10 +43,7 @@ class _HomeScreenState extends State<HomeScreen> {
           IconButton(
             onPressed: () async {
               await FirebaseAuth.instance.signOut();
-              Navigator.pushAndRemoveUntil(
-                  context,
-                  MaterialPageRoute(builder: (context) => LandingScren()),
-                  (route) => false);
+              // Routes.goToPage(context, LandingScren());
             },
             icon: Icon(Icons.logout),
           ),
@@ -104,7 +100,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ///LiveSafe Widget
                     LiveSafeWidget(),
 
-                    ///LocationSend Widget
+                    ///Location Send Widget
                     ///Location Bottom Sheet
                     LocationBottomSheet(),
                   ],
