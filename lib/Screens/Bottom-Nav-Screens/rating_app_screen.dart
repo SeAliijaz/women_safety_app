@@ -90,8 +90,8 @@ class _RatingAppScreenState extends State<RatingAppScreen> {
                     }
                     if (!snapshot.hasData) {
                       return Center(
-                          child: CustomProgressIndicator(
-                              title: "Loading Data..."));
+                          child:
+                              TitleProgressIndicator(title: "Loading Data..."));
                     }
                     return ListView.builder(
                       itemCount: snapshot.data!.docs.length,

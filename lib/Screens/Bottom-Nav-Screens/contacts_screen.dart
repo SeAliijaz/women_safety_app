@@ -115,7 +115,7 @@ class _ContactsScreenState extends State<ContactsScreen> {
       ),
       body: contacts.length == 0
           ? Center(
-              child: CustomProgressIndicator(title: "Loading Contacts..."),
+              child: TitleProgressIndicator(title: "Loading Contacts..."),
             )
           : Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),

@@ -37,6 +37,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   firebase_auth: ^4.1.2
   firebase_core: ^2.2.0
+  firebase_storage: ^11.0.10
   flutter:
     sdk: flutter
   flutter_phone_direct_caller: ^2.1.1
@@ -45,10 +46,12 @@ dependencies:
   geocoding: ^2.0.5
   geolocator: ^9.0.2
   google_fonts: ^3.0.1
+  image_picker: ^0.8.6+1
   permission_handler: ^10.2.0
   shared_preferences: ^2.0.15
   sqflite: ^2.2.2
   url_launcher: ^6.1.6
+  uuid: ^3.0.7
   webview_flutter: ^3.0.4
 
 dev_dependencies:

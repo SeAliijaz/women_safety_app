@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:women_safety_app/Utils/constants.dart';
 
-class CustomProgressIndicator extends StatelessWidget {
+class TitleProgressIndicator extends StatelessWidget {
   final String title;
-  const CustomProgressIndicator({
+  const TitleProgressIndicator({
     Key? key,
     required this.title,
   }) : super(key: key);

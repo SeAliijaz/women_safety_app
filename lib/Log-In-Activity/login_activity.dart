@@ -45,7 +45,7 @@ class LogInActivityChecking extends StatelessWidget {
               }
               return Scaffold(
                 body: Center(
-                  child: CustomProgressIndicator(
+                  child: TitleProgressIndicator(
                     title: "Checking Authentication...".toUpperCase(),
                   ),
                 ),
@@ -55,7 +55,7 @@ class LogInActivityChecking extends StatelessWidget {
         }
         return Scaffold(
           body: Center(
-            child: CustomProgressIndicator(
+            child: TitleProgressIndicator(
               title: "Initilization...".toUpperCase(),
             ),
           ),

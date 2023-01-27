@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:women_safety_app/Screens/Bottom-Nav-Screens/add_trusted_contacts_screen.dart';
-import 'package:women_safety_app/Screens/Bottom-Nav-Screens/chat_screen.dart';
+import 'package:women_safety_app/Screens/Bottom-Nav-Screens/bottom_nav_chat_screen.dart';
 import 'package:women_safety_app/Screens/Bottom-Nav-Screens/profile_screen.dart';
 import 'package:women_safety_app/Screens/Bottom-Nav-Screens/rating_app_screen.dart';
 import 'package:women_safety_app/Screens/Home_Screen/home_screen.dart';
@@ -20,7 +20,7 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
   List<Widget> screenRoutes = [
     HomeScreen(),
     AddTrustedContacts(),
-    ChatScreen(),
+    BottomNavChatScreen(),
     ProfileScreen(),
     RatingAppScreen(),
   ];
