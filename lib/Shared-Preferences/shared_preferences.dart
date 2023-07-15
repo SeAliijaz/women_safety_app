@@ -1,6 +1,6 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
-class MySharedPreferences {
+class PreferenceManager {
   static SharedPreferences? sharedPreferences;
   static const String key = "usertype";
 

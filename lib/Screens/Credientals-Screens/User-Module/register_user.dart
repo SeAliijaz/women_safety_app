@@ -195,6 +195,7 @@ class _RegisterUserState extends State<RegisterUser> {
                                           !gemail.contains("@")) {
                                         return 'Enter correct email';
                                       }
+                                      return null;
                                     },
                                   ),
                                   CustomTextField(

@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:women_safety_app/Utils/quotes.dart';
 
 class CustomAppBar extends StatelessWidget {
-  Function? onTap;
-  int? quoteIndex;
-  CustomAppBar({
+  final Function? onTap;
+  final int? quoteIndex;
+
+  const CustomAppBar({
     Key? key,
     required this.onTap,
     this.quoteIndex,

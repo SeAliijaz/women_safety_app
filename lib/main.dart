@@ -10,7 +10,7 @@ import 'package:women_safety_app/Utils/constants.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  await MySharedPreferences.init();
+  await PreferenceManager.init();
   runApp(const MyApp());
 }
 
@@ -38,7 +38,7 @@ class MyApp extends StatelessWidget {
 
       // home: LogInActivityChecking(),
       home: FutureBuilder(
-        future: MySharedPreferences.getUserType(),
+        future: PreferenceManager.getUserType(),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           if (snapshot.data == "") {
             return const UserLogInScreen();

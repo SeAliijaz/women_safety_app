@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:women_safety_app/Utils/constants.dart';
 
 class CustomButton extends StatelessWidget {
-  String? title;
-  bool? isLoginButton;
-  VoidCallback? onPressed;
-  bool? isLoading;
+  final String? title;
+  final bool? isLoginButton;
+  final VoidCallback? onPressed;
+  final bool? isLoading;
 
-  CustomButton(
+  const CustomButton(
       {Key? key,
       this.title,
       this.isLoading = false,

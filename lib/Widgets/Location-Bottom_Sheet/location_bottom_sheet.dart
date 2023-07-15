@@ -1,26 +1,68 @@
 import 'package:background_sms/background_sms.dart';
+import 'package:contacts_service/contacts_service.dart';
 import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:women_safety_app/Database-Helper/database_helper.dart';
-import 'package:women_safety_app/Models/contacts_model.dart';
 import 'package:women_safety_app/Utils/constants.dart';
-import 'package:women_safety_app/Widgets/Custom-Buttons/custom_button.dart';
 
 class LocationBottomSheet extends StatefulWidget {
-  const LocationBottomSheet({super.key});
+  const LocationBottomSheet({Key? key}) : super(key: key);
 
   @override
   State<LocationBottomSheet> createState() => _LocationBottomSheetState();
 }
 
 class _LocationBottomSheetState extends State<LocationBottomSheet> {
-  ///Get Permission
-  _getPermission() async => await [Permission.sms].request();
+  late PermissionStatus _permissionStatus;
+  Position? _currentPosition;
+  String? _currentAddress;
+  List<Contact> _selectedContacts = [];
 
-  ///Permisison Granted
-  _isPermissionGranted() async => await [Permission.sms.status.isGranted];
+  @override
+  void initState() {
+    super.initState();
+    _checkPermission();
+    _getCurrentLocation();
+  }
+
+  Future<void> _checkPermission() async {
+    _permissionStatus = await Permission.contacts.status;
+    if (_permissionStatus.isDenied) {
+      _requestPermission();
+    }
+  }
+
+  Future<void> _requestPermission() async {
+    final PermissionStatus status = await Permission.contacts.request();
+    setState(() {
+      _permissionStatus = status;
+    });
+  }
+
+  Future<void> _getCurrentLocation() async {
+    Position? position = await Geolocator.getCurrentPosition(
+      desiredAccuracy: LocationAccuracy.high,
+    );
+    setState(() {
+      _currentPosition = position;
+      _getAddressFromLatLng();
+    });
+  }
+
+  Future<void> _getAddressFromLatLng() async {
+    if (_currentPosition != null) {
+      List<Placemark> placemarks = await placemarkFromCoordinates(
+        _currentPosition!.latitude,
+        _currentPosition!.longitude,
+      );
+      Placemark place = placemarks.first;
+      setState(() {
+        _currentAddress =
+            '${place.locality}, ${place.postalCode}, ${place.street}';
+      });
+    }
+  }
 
   ///send sms
   _sendSMS(String phoneNumber, String message, {int? simSlot}) async {
@@ -37,127 +79,89 @@ class _LocationBottomSheetState extends State<LocationBottomSheet> {
     });
   }
 
-  ///Bottom Sheet to send location
-  showLocationBottomSheet(BuildContext context) {
-    showModalBottomSheet(
-      context: context,
-      builder: (context) {
-        return Container(
-          height: MediaQuery.of(context).size.height / 1.4,
-          decoration: const BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(30),
-                topRight: Radius.circular(30),
-              )),
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  "SEND YOUR CUURENT LOCATION IMMEDIATELY TO YOU EMERGENCY CONTACTS",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                      fontSize: 20, decoration: TextDecoration.underline),
-                ),
-                SizedBox(height: 10),
-                if (_currentPosition != null) Text(_currentAddress!),
-                CustomButton(
-                  title: "GET LOCATION",
-                  isLoginButton: true,
-                  onPressed: _getCurrentLocation,
-                ),
-                CustomButton(
-                  title: "Send Alert",
-                  isLoginButton: true,
-                  onPressed: () async {
-                    List<ContactModel> contactList =
-                        await DataBaseHelper().getContactList();
-                    String receipents = "";
-                    int iteration = 1;
-                    for (ContactModel contactModel in contactList) {
-                      receipents += contactModel.number;
-                      if (iteration != contactList.length) {
-                        receipents += "+";
-                        iteration++;
-                      }
-                    }
-                    String locationURL =
-                        "https://www.google.com/maps/search/?api=1&query=${_currentPosition!.latitude}%2C${_currentPosition!.longitude}. $_currentAddress";
-                    String messageBody = locationURL;
-                    if (await _isPermissionGranted()) {
-                      contactList.forEach((element) {
-                        _sendSMS(element.number,
-                            "I'm in Trouble Please Help My Location: $messageBody");
-                      });
-                    } else {
-                      ShowMessage.flutterToastMsg("something wrong");
-                    }
-                  },
-                ),
-              ],
-            ),
-          ),
-        );
-      },
-    );
-  }
+  void _sendAlert() async {
+    if (_currentPosition != null && _currentAddress != null) {
+      final List<String> contactList = _selectedContacts
+          .map((contact) => contact.phones?.first.value ?? '')
+          .toList();
+      final String locationURL =
+          "https://www.google.com/maps/search/?api=1&query=${_currentPosition!.latitude}%2C${_currentPosition!.longitude}";
+      final String messageBody =
+          'I am in trouble! Please help!\nLocation: $_currentAddress\n$locationURL';
 
-  String? _currentAddress;
-  Position? _currentPosition;
-  LocationPermission? _locationPermission;
-
-  ///Get Location
-  _getCurrentLocation() async {
-    _locationPermission = await Geolocator.checkPermission();
-    if (_locationPermission == LocationPermission.denied) {
-      _locationPermission = await Geolocator.requestPermission();
-      ShowMessage.flutterToastMsg("Location permissions are  denind");
-      if (_locationPermission == LocationPermission.deniedForever) {
-        ShowMessage.flutterToastMsg(
-            "Location permissions are permanently denind");
+      for (final String contact in contactList) {
+        _sendSMS(contact, messageBody);
       }
-    }
-    Geolocator.getCurrentPosition(
-            desiredAccuracy: LocationAccuracy.high,
-            forceAndroidLocationManager: true)
-        .then((Position position) {
-      setState(() {
-        _currentPosition = position;
-        print(_currentPosition!.latitude);
-        _getAddressFromLatLon();
-      });
-    }).catchError((e) {
-      ShowMessage.flutterToastMsg(e.toString());
-    });
-  }
 
-  _getAddressFromLatLon() async {
-    try {
-      List<Placemark> placemarks = await placemarkFromCoordinates(
-          _currentPosition!.latitude, _currentPosition!.longitude);
-
-      Placemark place = placemarks[0];
-      setState(() {
-        _currentAddress =
-            "${place.locality},${place.postalCode},${place.street},";
-      });
-    } catch (e) {
-      ShowMessage.flutterToastMsg(e.toString());
+      print('Alert sent!');
+    } else {
+      print('Unable to send alert. Location information is missing.');
     }
   }
 
-  @override
-  void initState() {
-    super.initState();
-    _getPermission();
-    _getCurrentLocation();
+  Future<void> _selectContacts() async {
+    if (_permissionStatus.isGranted) {
+      Contact? contact = await ContactsService.openDeviceContactPicker();
+      if (contact != null) {
+        setState(() {
+          _selectedContacts = [contact];
+        });
+      }
+    } else {
+      ShowMessage.flutterToastMsg("Permission to access contacts is denied");
+      print('Permission to access contacts is denied');
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => showLocationBottomSheet(context),
+      onTap: () {
+        showModalBottomSheet(
+          context: context,
+          builder: (context) {
+            return Container(
+              height: MediaQuery.of(context).size.height / 1.4,
+              decoration: const BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(30),
+                  topRight: Radius.circular(30),
+                ),
+              ),
+              child: Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'SEND YOUR CURRENT LOCATION IMMEDIATELY TO YOUR EMERGENCY CONTACTS',
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                        fontSize: 20,
+                        decoration: TextDecoration.underline,
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    if (_currentPosition != null) Text((_currentAddress ?? '')),
+                    ElevatedButton(
+                      onPressed: _getCurrentLocation,
+                      child: const Text('GET LOCATION'),
+                    ),
+                    ElevatedButton(
+                      onPressed: _selectContacts,
+                      child: const Text('SELECT CONTACTS'),
+                    ),
+                    ElevatedButton(
+                      onPressed: _sendAlert,
+                      child: const Text('SEND ALERT'),
+                    ),
+                  ],
+                ),
+              ),
+            );
+          },
+        );
+      },
       child: Card(
         elevation: 5,
         shape: RoundedRectangleBorder(
@@ -170,17 +174,22 @@ class _LocationBottomSheetState extends State<LocationBottomSheet> {
           child: Row(
             children: [
               Expanded(
-                  child: Column(
-                children: const [
-                  ListTile(
-                    title: Text("Send Location"),
-                    subtitle: Text("Share Location"),
-                  ),
-                ],
-              )),
+                child: Column(
+                  children: const [
+                    ListTile(
+                      title: Text('Send Location'),
+                      subtitle: Text('Share Location'),
+                    ),
+                  ],
+                ),
+              ),
               ClipRRect(
-                  borderRadius: BorderRadius.circular(20),
-                  child: Image.asset('assets/route.jpg')),
+                borderRadius: BorderRadius.only(
+                  topRight: Radius.circular(20),
+                  bottomRight: Radius.circular(20),
+                ),
+                child: Image.asset('assets/route.jpg'),
+              ),
             ],
           ),
         ),

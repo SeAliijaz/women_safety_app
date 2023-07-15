@@ -174,6 +174,7 @@ class _RegisterGuardianState extends State<RegisterGuardian> {
                                           !email.contains("@")) {
                                         return 'enter correct email';
                                       }
+                                      return null;
                                     },
                                   ),
                                   CustomTextField(
@@ -190,6 +191,7 @@ class _RegisterGuardianState extends State<RegisterGuardian> {
                                           !email.contains("@")) {
                                         return 'enter correct email';
                                       }
+                                      return null;
                                     },
                                   ),
                                   CustomTextField(

@@ -3,10 +3,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:women_safety_app/Module-Widgets/bottom_nav_screen.dart';
-import 'package:women_safety_app/Screens/Credientals-Screens/User-Module/register_user.dart';
 import 'package:women_safety_app/Screens/Credientals-Screens/Guardian-Module/guardian_home_screen.dart';
 import 'package:women_safety_app/Screens/Credientals-Screens/Guardian-Module/register_guardian.dart';
-import 'package:women_safety_app/Screens/Home_Screen/home_screen.dart';
+import 'package:women_safety_app/Screens/Credientals-Screens/User-Module/register_user.dart';
 import 'package:women_safety_app/Shared-Preferences/shared_preferences.dart';
 import 'package:women_safety_app/Utils/constants.dart';
 import 'package:women_safety_app/Widgets/Custom-Buttons/custom_button.dart';
@@ -46,10 +45,10 @@ class _UserLogInScreenState extends State<UserLogInScreen> {
             .then((value) {
           if (value['type'] == 'parent') {
             debugPrint(value['type']);
-            MySharedPreferences.saveUserType('parent');
+            PreferenceManager.saveUserType('parent');
             Routes.goToPage(context, GuardianHomeScreen());
           } else {
-            MySharedPreferences.saveUserType('child');
+            PreferenceManager.saveUserType('child');
             Routes.goToPage(context, BottomNavScreen());
           }
         });
